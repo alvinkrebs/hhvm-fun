@@ -1,0 +1,54 @@
+set -x
+##
+## start fressh ...
+#
+rm -rf .hhconfig  \
+    composer.json  \
+    composer.lock   \
+    hh_autoload.json \
+    src bin tests vendor
+##
+## required for all new projects
+##
+touch .hhconfig
+
+mkdir -p src tests bin
+
+##
+## note! the escaped backslashes, if this isn't right, you'll get
+## "Expected configuration file to contain a JSON object, got NULL"
+##
+cat<<eof>hh_autoload.json
+{
+  "roots": [
+    "src/"
+  ],
+  "devRoots": [
+    "tests/"
+  ],
+  "devFailureHandler": "Facebook\\\\AutoloadMap\\\\HHClientFallbackHandler"
+}
+eof
+
+##
+## bring in all the basics and the autoloader
+##
+composer require hhvm/hsl hhvm/hhvm-autoload hhvm/asio-utilities facebook/xhp-lib
+
+##
+## create the autoload script
+##
+./vendor/bin/hh-autoload
+
+cp ../book-test/src/* src
+cp ../book-test/bin/* bin
+
+hhvm bin/sq.hack
+
+##
+## hhvm -m server -p 8080 
+## 1. create an index.php file in bin
+## 2. from this directory ln -sf bin/indedx.php
+## 3. run hhvm -m serfver -p 8080 from this directory
+## 4. on a local machine, reverence hhvmfun:8080/
+##
