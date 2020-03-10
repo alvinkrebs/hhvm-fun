@@ -1,3 +1,6 @@
+## the chicken before the egg ...
+## git clone https://github.com/alvinkrebs/hhvm-fun.git
+##
 set -x
 ##
 ## start fressh ...
@@ -6,7 +9,7 @@ rm -rf .hhconfig  \
     composer.json  \
     composer.lock   \
     hh_autoload.json \
-    src bin tests vendor
+    vendor
 ##
 ## required for all new projects
 ##
@@ -33,15 +36,12 @@ eof
 ##
 ## bring in all the basics and the autoloader
 ##
-composer require hhvm/hsl hhvm/hhvm-autoload hhvm/asio-utilities facebook/xhp-lib
+composer require hhvm/hsl hhvm/hhvm-autoload facebook/xhp-lib
 
 ##
 ## create the autoload script
 ##
 ./vendor/bin/hh-autoload
-
-cp ../book-test/src/* src
-cp ../book-test/bin/* bin
 
 hhvm bin/sq.hack
 
