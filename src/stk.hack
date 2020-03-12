@@ -43,3 +43,6 @@ function swap<T>(inout T $i1, inout T $i2): void {
 function square_vec(vec<num> $numbers): vec<num> {
     return Vec\map($numbers, $number ==> $number * $number);
 }
+function me_str(): string {
+    return "Bob";
+}

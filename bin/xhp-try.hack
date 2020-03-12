@@ -78,7 +78,7 @@ function basic_usage_examples_basic_xhp(): void {
   );
 }
 <<__EntryPoint>>
-function intro_examples_a_a_post() {
+function intro_examples_a_a_post(): void {
   $get_link = <a href="http://www.example.com">I'm a normal link</a>;
   $post_link =
     <a:post href="http://www.example.com">I make a POST REQUEST</a:post>;

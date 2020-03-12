@@ -44,7 +44,7 @@ async function main(): Awaitable<noreturn> {
     echo "\$v1 is $v1, \$v2 is $v2\n";
 
     $p1 = new Point(3,4);
-    echo "\$p1 is .$p1\n";
+    // echo "\$p1 is .$p1\n";
 
     do_it();
 

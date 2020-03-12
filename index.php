@@ -1,1 +1,1 @@
-bin/xhp-try.hack
+bin/names.hack
