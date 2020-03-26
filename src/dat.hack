@@ -10,18 +10,22 @@ type Cv = shape("Experience" => Vector<Experience>, "Skill" => Vector<Skill>);
 
 class StreetAddress {
 
+    private string $name_str;
     private string $city_str;
     private string $state_str;
     private string $street_str;
 
+    const DEF_NAME = "Bob Garrow";
     const DEF_CITY = "Los Altos Hills";
     const DEF_STATE = "California";
     const DEF_STREET = "13914 Mir Mirou";
 
     public function __construct(
+        string $name = StreetAddress::DEF_NAME,
         string $city = StreetAddress::DEF_CITY,
         string $state = StreetAddress::DEF_STATE,
         string $street = StreetAddress::DEF_STREET) {
+        $this->name_str = $name;
         $this->city_str = $city;
         $this->state_str = $state;
         $this->street_str = $street;
@@ -35,8 +39,12 @@ class StreetAddress {
     public function state(): string {
         return $this->state_str;
     }
+    public function name(): string {
+        return $this->name_str;
+    }
     public function all(): AnAddress {
         return shape(
+            "Name"   => $this->name(),
             "State"  => $this->state(),
             "City"   => $this->city(),
             "Street" => $this->street()
@@ -75,20 +83,39 @@ class Skill {
         return $this->start . $this->skill;
     }
     public function nice_skill(): string {
-        return $this->skill . " (since " . $this->start . ") -" . $this->comfort_level;
+        return $this->skill . " (since " . $this->start . ")";
+    }
+    public function tool_tip(): string {
+
+        if ($this->comfort_level >= 90) {
+            return "Expert";
+        }
+        if ($this->comfort_level >= 80) {
+            return "Adept";
+        }
+        if ($this->comfort_level >= 70) {
+            return "Comfortable";
+        }
+        if ($this->comfort_level >= 60) {
+            return "Intermediate";
+        }
+        return "Learning";
+
     }
 }
 class Education {}
 class Experience {
 
     private string $desc;
+    private string $tip;
     private int $start;
     private int $stop;
 
-    public function __construct(int $start, int $stop, string $desc) {
+    public function __construct(int $start, int $stop, string $desc, string $tip) {
         $this->start = $start;
         $this->stop = $stop;
         $this->desc = $desc;
+        $this->tip  = $tip ;
     }
     private function nice_date(int $d): string {
         if (0 == $d) {
@@ -111,7 +138,20 @@ class Experience {
         return $this->nice_date($this->stop);
     }
     public function nice_exp(): string {
-        return $this->nice_start_date() . " to " . $this->nice_stop_date() . " did this: " . $this->desc;
+        return $this->nice_start_date() . " to " . $this->nice_stop_date() . ", " . $this->desc;
+    }
+    //
+    // The &#013; combined with the style white-space: pre-line; worked for me.
+    //
+    public function tool_tip(): string {
+        $hdr   = vec[];
+        $hdr[] = Str\repeat("X", 30);
+        $hdr[] = Str\repeat("Z", 20);
+        $hdr[] = Str\repeat("Q", 20);
+        // return $hdr . "&#010;" . $this->tip . "&#010;" . $ftr;
+        // return $hdr . "<br>" . $this->tip . "<br>" . $ftr;
+        // return $hdr . "&#013;" . $this->tip . "&#013;" . $ftr;
+        return $hdr[0] . "\n" . $this->tip . "\n" . $hdr[1] . "\n" . $hdr[2];
     }
 }
 function me(): string {

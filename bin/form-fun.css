@@ -1,12 +1,13 @@
 form.postLink {
-  display: inline;
+    display: inline;
+    margin-left: 1em;
 }
 body {
-  background-color: powderblue;
+    background-color: powderblue;
 }
 h1 {
-  color: blue;
-  background-color:Tomato;
+    color: blue;
+    text-align:center;
 }
 exps {
     color: red;
@@ -15,5 +16,114 @@ skills {
     color: green;
 }
 p {
-  color: green;
+    color: green;
+}
+address {
+    color: blue;
+}
+.tooltip-inner {
+    white-space: pre-wrap;
+    max-width:none;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 480px;
+}
+.button_skill {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+.button_skill:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.button_exp {
+    background-color: red;
+    color: black;
+    border: 2px solid #008CBA;
+    display: block;
+}
+.button_exp:hover {
+    background-color: #008CBA;
+    color: white;
+}
+.btn-group .button_exp {
+    background-color: #00C8BA;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+}
+.btn-group .button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+    background-color: #3e8e41;
+}
+.tooltip {
+    display:inline-block;
+    position:relative;
+    border-bottom:1px dotted #666;
+    text-align:left;
+}
+
+.tooltip h3 {margin:12px 0;}
+
+.tooltip .left {
+    min-width:200px;
+    max-width:400px;
+    top:50%;
+    right:100%;
+    margin-right:20px;
+    transform:translate(0, -50%);
+    padding:20px;
+    color:#666666;
+    background-color:#FFFFE0;
+    font-weight:normal;
+    font-size:13px;
+    border-radius:8px;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    display:none;
+    border:1px solid #DCA;
+}
+
+.tooltip:hover .left {
+    display:block;
+}
+
+.tooltip .left i {
+    position:absolute;
+    top:50%;
+    left:100%;
+    margin-top:-12px;
+    width:12px;
+    height:24px;
+    overflow:hidden;
+}
+
+.tooltip .left i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:0;
+    top:50%;
+    transform:translate(-50%,-50%) rotate(-45deg);
+    background-color:#FFFFE0;
+    border:1px solid #DCA;
 }
