@@ -18,9 +18,9 @@ class :tool_tip extends :x:element {
     attribute string general_desc @required;
     attribute string general_title @required;
 
-    // onmouseover="tooltip.pop(this, <h3>{$this->:general_title}</h3>{$this->:general_desc})">
     // this is dumb, you have to have some element, like <div> to get this thing to render
-    // leaving them out causes an innocuous error
+    // leaving them out causes an innocuous error. And since the whole point was to circumvent
+    // the innards of the span tags, we have to use div.
     //
     protected function render(): \XHPRoot {
         return <div>{new tool_tip_h3($this->:general_title, $this->:general_desc)}</div>;
@@ -36,43 +36,6 @@ function button_tip(string $title, string $desc): XHPRoot {
     $cool = <span class="tooltip">{$title}</span>;
     $cool->setAttribute("title", "tooltip.pop(this, '<h3>{$title}</h3>$desc')");
     return $cool;
-}
-function cool_tip(string $title, string $desc): XHPRoot {
-    $cool = <span class="tooltip">{$title}</span>;
-    $cool->setAttribute("onmouseover", "tooltip.pop(this, '<h3>{$title}</h3>$desc')");
-    return $cool;
-}
-function cool_tip_old(): XHPRoot {
-
-    $general_desc  = "This is a general description";
-    $general_title = "General Title";
-
-    // this works ...
-    //
-    //$span = <span class="tooltip" onmouseover="tooltip.pop(this, '<h3>Lorem ipsum</h3>Lorem ipsum or onsequat neque, eget tempor ipsum.')">Hover me</span>;
-
-    // this doesn't ...
-    //
-    //$tool = tooltip.pop(this, <h3>{$general_title}</h3>{$general_desc});
-    //$cool = <span class="tooltip" onmouseover="$tool">$general_title</span>;
-
-    // $cool = <span class="tooltip" onmouseover="tooltip.pop(this, '<h3>$general_title</h3>$general_desc')">$general_title</span>;
-    //
-    $cool = <span class="tooltip">{$general_title}</span>;
-    $cool->setAttribute("onmouseover", "tooltip.pop(this, '<h3>{$general_title}</h3>$general_desc')");
-
-    return $cool;
-
-}
-function xhp_build_exp(vec<Experience> $exps): XHPRoot {
-    $list = <ul id="exps" />;
-    foreach ($exps as $v) {
-        $list->appendChild(
-            <li><p>
-                <button class="button button_exp" type="button" title="helo there">{$v->nice_exp()}</button>
-            </p></li>);
-    }
-    return $list;
 }
 function xhp_build_stacked_exp(vec<Experience> $exps): XHPRoot {
     $stacked_exp = <div id="stacked_exp" />;
@@ -98,16 +61,6 @@ function xhp_build_address(AnAddress $a): XHPRoot {
     $address_block->appendChild(<h1>{$ary["City"]}</h1>);
     $address_block->appendChild(<h1>{$ary["State"]}</h1>);
     return $address_block;
-}
-function xhp_build_skill(vec<Skill> $skills): XHPRoot {
-    $list = <ul id="skills" />;
-    foreach ($skills as $v) {
-        $list->appendChild(
-            <li><p>
-                <button class="button button_skill" type="button">{$v->nice_skill()}</button>
-            </p></li>);
-    }
-    return $list;
 }
 function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
     $d = dict[];
@@ -171,40 +124,6 @@ function cv(): (vec<Experience>, vec<Skill>) {
     return tuple($exp, $ordered);
 
 }
-final class :a:post extends :x:element {
-  attribute :a;
-
-  use XHPHelpers;
-
-  protected function render(): XHPRoot {
-
-    $id = $this->getID();
-
-    $anchor = <a>{$this->getChildren()}</a>;
-
-    $form = (
-      <form
-        id={$id}
-        method="post"
-        action={$this->:href}
-        target={$this->:target}
-        class="postLink">
-        {$anchor}
-      </form>
-    );
-
-    $this->transferAllAttributes($anchor);
-
-    $anchor->setAttribute(
-      'onclick',
-      'document.getElementById("'.$id.'").submit(); return false;',
-    );
-
-    $anchor->setAttribute('href', '#');
-
-    return $form;
-  }
-}
 <<__EntryPoint>>
 function xhp_object_methods_run(): void {
 
@@ -224,32 +143,17 @@ function xhp_object_methods_run(): void {
 
     $expSkill = cv();
 
-    if (false){
-        $ct = cool_tip("Smallish Title", "Longer description about something i used to do");
-        echo $ct;
-    } else {
-        echo_tooltip("Title X", "This is the 10th time of visiting this POS");
+    echo_tooltip("Title X", "This is the 10th time of visiting this POS");
+
+    $exp_stacked_list = xhp_build_stacked_exp($expSkill[0]);
+    foreach ($exp_stacked_list->getChildren() as $child) {
+        /* HH_FIXME[4067] implicit __toString() is now deprecated */
+        echo <div class="btn-group">{$child}</div> . "\n";
     }
 
-    if (true) {
-        $exp_stacked_list = xhp_build_stacked_exp($expSkill[0]);
-        foreach ($exp_stacked_list->getChildren() as $child) {
-            /* HH_FIXME[4067] implicit __toString() is now deprecated */
-            echo <div class="btn-group">{$child}</div> . "\n";
-        }
-        $skill_list = xhp_build_stacked_skill($expSkill[1]);
-        foreach ($skill_list->getChildren() as $child) {
-            /* HH_FIXME[4067] implicit __toString() is now deprecated */
-            echo <div class="btn-group">{$child}</div> . "\n";
-        }
-    } else {
-        $exp_list = xhp_build_exp($expSkill[0]);
-        foreach ($exp_list->getChildren() as $child) {
-            echo <ul>{$child}</ul> . "\n";
-        }
-        $skill_list = xhp_build_skill($expSkill[1]);
-        foreach ($skill_list->getChildren() as $child) {
-            echo <ul>{$child}</ul>."\n";
-        }
+    $skill_list = xhp_build_stacked_skill($expSkill[1]);
+    foreach ($skill_list->getChildren() as $child) {
+        /* HH_FIXME[4067] implicit __toString() is now deprecated */
+        echo <div class="btn-group">{$child}</div> . "\n";
     }
 }
