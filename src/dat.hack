@@ -71,16 +71,24 @@ class Skill {
     private int $start;
     private int $comfort_level;
     private string $skill;
-    public function __construct(string $skill, int $start, int $comfort_level = 100) {
+    private string $badge;
+    public function __construct(string $skill, int $start, int $comfort_level = 100, string $badge = "what.jpg") {
         $this->skill = $skill;
         $this->start = $start;
         $this->comfort_level = $comfort_level;
+        $this->badge = $badge;
     }
     public function get(): Skill {
         return $this;
     }
     public function key(): string {
         return $this->start . $this->skill;
+    }
+    public function get_badge(): string {
+        return $this->badge;
+    }
+    public function get_skill(): string {
+        return $this->skill;
     }
     public function nice_skill(): string {
         return $this->skill . " (since " . $this->start . ")";
@@ -108,14 +116,16 @@ class Experience {
 
     private string $desc;
     private string $tip;
+    private string $badge;
     private int $start;
     private int $stop;
 
-    public function __construct(int $start, int $stop, string $desc, string $tip) {
-        $this->start = $start;
-        $this->stop = $stop;
-        $this->desc = $desc;
-        $this->tip  = $tip ;
+    public function __construct(int $start, int $stop, string $desc, string $tip, string $badge = "what.jpg") {
+        $this->start    = $start;
+        $this->stop     = $stop;
+        $this->desc     = $desc;
+        $this->tip      = $tip ;
+        $this->badge    = $badge ;
     }
     private function nice_date(int $d): string {
         if (0 == $d) {
@@ -139,6 +149,12 @@ class Experience {
     }
     public function nice_exp(): string {
         return $this->nice_start_date() . " to " . $this->nice_stop_date() . ", " . $this->desc;
+    }
+    public function get_badge(): string {
+        return $this->badge;
+    }
+    public function get(): Experience {
+        return $this;
     }
     //
     // The &#013; combined with the style white-space: pre-line; worked for me.

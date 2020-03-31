@@ -16,10 +16,10 @@ skills {
     color: green;
 }
 p {
-    color: green;
+    color: #ff0000;
 }
 address {
-    color: blue;
+    color: #dadd00;
 }
 .tooltip-inner {
     white-space: pre-wrap;
@@ -69,22 +69,43 @@ address {
 .btn-group .button:not(:last-child) {
     border-bottom: none; /* Prevent double borders */
 }
-
 .btn-group .button:hover {
     background-color: #3e8e41;
 }
+.tt_table {
+    style:"float:center";
+    border: 1px solid black;
+    background-color:#ffffff;
+    width: 100%;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+.tt_row {
+    border: 1px solid black;
+}
+#tt_table tr:nth-child(even){background-color: #f2f2f2;}
+
+/*
+    
+*/
 .tooltip {
     display:inline-block;
     position:relative;
     border-bottom:1px dotted #666;
     text-align:left;
 }
-
-.tooltip h3 {margin:12px 0;}
+.tooltip .left h3 p {
+    margin:21px 0;
+}
+img {
+    width:100px;
+}
+/*
+*/
 
 .tooltip .left {
     min-width:200px;
-    max-width:400px;
+    max-width:500px;
     top:50%;
     right:100%;
     margin-right:20px;
@@ -93,7 +114,7 @@ address {
     color:#666666;
     background-color:#FFFFE0;
     font-weight:normal;
-    font-size:13px;
+    font-size:31px;
     border-radius:8px;
     position:absolute;
     z-index:99999999;
@@ -126,4 +147,59 @@ address {
     transform:translate(-50%,-50%) rotate(-45deg);
     background-color:#FFFFE0;
     border:1px solid #DCA;
+}
+
+/*
+
+*/
+.tooltip .bottom {
+    min-width:200px;
+    /*max-width:400px;*/
+    top:40px;
+    left:50%;
+    transform:translate(-50%, 0);
+    padding:20px;
+    color:#666666;
+    background-color:#EEEEEE;
+    font-weight:normal;
+    font-size:13px;
+    border-radius:8px;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    display:none;
+}
+
+.tooltip:hover .bottom {
+    display:block;
+}
+
+.tooltip .bottom h3 p {
+    margin:21px 0;
+}
+
+.tooltip .bottom img {
+    width:40px;
+}
+
+.tooltip .bottom i {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+}
+
+.tooltip .bottom i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:50%;
+    transform:translate(-50%,50%) rotate(45deg);
+    background-color:#EEEEEE;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
