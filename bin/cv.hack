@@ -21,7 +21,7 @@ function cv(): (vec<Experience>, vec<Skill>) {
             "First real windows server application"
         ]),
 
-        new Experience(19989101, 20041031, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
+        new Experience(19980901, 20041031, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
             "First linux device driver, EISA vbi caption reader",
             "IR Database parser and distribution", 
             "Tribune Media Service Content Distribution Service",
@@ -223,10 +223,7 @@ function sort_vec_exp(vec<Experience> $vec): vec<Experience> {
     foreach ($vec as $k => $v) {
         $d[$v->key()] = $v->get();
     }
-    $exp_sort_func = function($a, $b): int {
-        return $b->ikey() - $a->ikey() ;
-    };
-    $ordered = Dict\sort($d, $exp_sort_func);
+    $ordered = Dict\sort($d, function($a, $b): int { return $b->ikey() - $a->ikey() ; });
     $sorted_vec = vec[];
     foreach ($ordered as $k => $v) {
         $sorted_vec[] = $v->get();

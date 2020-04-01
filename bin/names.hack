@@ -189,7 +189,7 @@ function xhp_object_methods_run(): void {
         <head>
             <link rel="stylesheet" href="bin/form-fun.css" />
             <link rel="stylesheet" href="third-party/tooltip/themes/1/tooltip.css" />
-            <script src="third-party/tooltip/themes/1/tooltip.js" type="text/javascript"></script>
+            <script src="third-party/tooltip/themes/1/tooltip.js"></script>
         </head>;
 
     echo get_address(new StreetAddress()->all());
