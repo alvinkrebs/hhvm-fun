@@ -1,4 +1,5 @@
 use namespace HH\Lib\Dict;
+use namespace HH\Lib\Str;
 
 function cv(): (vec<Experience>, vec<Skill>) {
 
@@ -10,54 +11,55 @@ function cv(): (vec<Experience>, vec<Skill>) {
             "SQR writer",
         ]),
 
-        new Experience(19950101, 19951231, "Network General (acquired by McAfee)", "Member of Technical Staff", "ng.jpg", vec<string> [
+        new Experience(19950101, 19950831, "Network General (acquired by McAfee)", "Member of Technical Staff", "ng.jpg", vec<string> [
             "Sybase DBA",
             "Sybase Replication Server"
         ]),
 
-        new Experience(19960101, 19981231, "Baystone Software (acquired by Remedy)", "Principle Engineer", "remedy.jpg", vec<string> [
+        new Experience(19950901, 19980931, "Baystone Software (acquired by Remedy)", "Principle Engineer", "remedy.jpg", vec<string> [
             "First real parser to implement CORA Biz Rules Tool",
             "First real windows server application"
         ]),
 
-        new Experience(19990101, 20041231, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
+        new Experience(19909101, 20041031, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
             "First linux device driver, EISA vbi caption reader",
             "IR Database parser and distribution", 
             "Tribune Media Service Content Distribution Service",
-            "Senior Manager, Showcase Content Services"
+            "Senior Manager, Showcase Content Services",
+            "TiVo Tags caption insertion for NBC/Disney",
         ]),
 
-        new Experience(20050101, 20061231, "Avvenu (acquired by Nokia)", "Member of Technical Staff", "nokia.jpg", vec<string> [
+        new Experience(20010101, 20060731, "Avvenu (acquired by Nokia)", "Member of Technical Staff", "nokia.jpg", vec<string> [
             "Streaming A/V proxy service",
             "NTLMv2 Biz Proxy service",
         ]),
 
-        new Experience(20060101, 20101231, "Mobilygen (acquired by Maxim)", "Member of Technical Staff", "mobi.jpg", vec<string> [
+        new Experience(20060801, 20100231, "Mobilygen (acquired by Maxim)", "Member of Technical Staff", "mobi.jpg", vec<string> [
             "Storage Driver for CF/IDE",
             "Lua extensions for motion tracking",
             "USB Driver",
         ]),
 
-        new Experience(20100101, 20101231, "Blueberry Video", "Founder", "blue.jpg", vec<string> [
+        new Experience(20100101, 20100231, "Blueberry Video", "Founder", "blue.jpg", vec<string> [
             "Board bring up",
             "Investor presentations",
             "AV device driver rewrite in support of 16 cores"
         ]),
 
-        new Experience(20110101, 20215231, "Dell", "Senior Manager", "dell.png", vec<string> [
+        new Experience(20100901, 20150831, "Dell", "Senior Manager", "dell.png", vec<string> [
             "Parser on four platforms, win, osx, linux, sparc",
             "Managed the K2000 team delivering the top 5 customer requests",
             "Multicast image distribution",
         ]),
 
-        new Experience(20160101, 20181231, "LARC", "Architect", "larc.png", vec<string> [
+        new Experience(20150901, 20181131, "LARC", "Architect", "larc.png", vec<string> [
             "Go server for mesh network",
             "Several arm projects",
             "BLE/Accelerometer motion control for proprietary AV system",
             "Network Administration"
         ]),
 
-        new Experience(20150101,        0, "Viziapps", "Principle Engineer", "viziapps.png", vec<string> [
+        new Experience(20180301,        0, "Viziapps", "Principle Engineer", "viziapps.png", vec<string> [
             "ASPX application",
             "Cordova plugin developer",
             "AWS Administration: S3, EC2, Elastic Beanstalk, RDS"
@@ -100,6 +102,7 @@ function cv(): (vec<Experience>, vec<Skill>) {
             "CF/IDE Driver for arm",
             "Infrared Driver for mips/broadcom",
             "Closed Caption decoder for i686",
+            "i2c", "spi"
         ]),
         new Skill("java", 2000, 70, "java.png", vec<string>[
             "SGI StudioCentral extensions written for collateral collection",
@@ -194,9 +197,10 @@ function cv(): (vec<Experience>, vec<Skill>) {
         ]),
     ];
 
-    $ordered = sort_vec_skill($skill);
+    $ordered_skill = sort_vec_skill($skill);
+    $ordered_exp = sort_vec_exp($exp);
 
-    return tuple($exp, $ordered);
+    return tuple($ordered_exp, $ordered_skill);
 
 }
 function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
@@ -205,6 +209,21 @@ function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
         $d[$v->key()] = $v->get();
     }
     $ordered = Dict\sort($d);
+    $sorted_vec = vec[];
+    foreach ($ordered as $k => $v) {
+        $sorted_vec[] = $v->get();
+    }
+    return $sorted_vec;
+}
+function sort_vec_exp(vec<Experience> $vec): vec<Experience> {
+    $d = dict[];
+    foreach ($vec as $k => $v) {
+        $d[$v->key()] = $v->get();
+    }
+    $exp_sort_func = function($a, $b): int {
+        return $b->ikey() - $a->ikey() ;
+    };
+    $ordered = Dict\sort($d, $exp_sort_func);
     $sorted_vec = vec[];
     foreach ($ordered as $k => $v) {
         $sorted_vec[] = $v->get();

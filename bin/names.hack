@@ -121,18 +121,6 @@ function xhp_object_methods_run(): void {
 
     \Facebook\AutoloadMap\initialize();
     
-    echo
-        <head>
-            <link rel="stylesheet" href="bin/form-fun.css" />
-            <link rel="stylesheet" href="third-party/tooltip/themes/1/tooltip.css" />
-            <script src="third-party/tooltip/themes/1/tooltip.js" type="text/javascript"></script>
-        </head>
-    ;
-
-    $where_i_live = new StreetAddress();
-
-    echo get_address($where_i_live->all());
-
     $expSkill = cv();
 
     //
@@ -192,9 +180,19 @@ function xhp_object_methods_run(): void {
         $exp_tab->appendChild(
             <tr class="left">
                 <td>{get_experience($expSkill[0][$i]->get())}</td>
+                <td>{$expSkill[0][$i]->get_exprange()}</td>
             </tr>
        );
     }
+
+    echo
+        <head>
+            <link rel="stylesheet" href="bin/form-fun.css" />
+            <link rel="stylesheet" href="third-party/tooltip/themes/1/tooltip.css" />
+            <script src="third-party/tooltip/themes/1/tooltip.js" type="text/javascript"></script>
+        </head>;
+
+    echo get_address(new StreetAddress()->all());
 
     echo <h2>Work Experience</h2>;
     echo $exp_tab;

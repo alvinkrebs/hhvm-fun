@@ -136,6 +136,21 @@ class Experience {
         $this->badge    = $badge ;
         $this->accomplishments = $accomplishments;
     }
+    public function ikey(): int {
+        return $this->start;
+    }
+    public function key(): string {
+        return (string)$this->start;
+    }
+    private function exp_date(int $d): string {
+        if (0 == $d) {
+            return date("Y/m");
+        }
+        $year   = (int)($d / 10000);
+        $month  = $d - (10000 * $year);
+        $month /= 100;
+        return Str\format("%d/%02d", $year, (int)$month);
+    }
     private function nice_date(int $d): string {
         if (0 == $d) {
             return date("Y-m-d");
@@ -159,8 +174,8 @@ class Experience {
     public function get_daterange(): string {
         return $this->nice_start_date() . " to " . $this->nice_stop_date();
     }
-    public function nice_exp(): string {
-        return $this->nice_start_date() . " to " . $this->nice_stop_date() . ", " . $this->desc;
+    public function get_exprange(): string {
+        return $this->exp_date($this->start) . " to " . $this->exp_date($this->stop);
     }
     public function get_badge(): string { return $this->badge; }
     public function get_title(): string { return $this->title; }
@@ -169,21 +184,6 @@ class Experience {
 
     public function get(): Experience {
         return $this;
-    }
-    //
-    // The &#013; combined with the style white-space: pre-line; worked for me.
-    //
-    public function tool_tip(): string {
-
-        $hdr   = vec[];
-        $hdr[] = Str\repeat("X", 30);
-        $hdr[] = Str\repeat("Z", 20);
-        $hdr[] = Str\repeat("Q", 20);
-        // return $hdr . "&#010;" . $this->tip . "&#010;" . $ftr;
-        // return $hdr . "<br>" . $this->tip . "<br>" . $ftr;
-        // return $hdr . "&#013;" . $this->tip . "&#013;" . $ftr;
-        return $hdr[0] . "\n" . $this->tip . "\n" . $hdr[1] . "\n" . $hdr[2];
-
     }
 }
 function me(): string {
