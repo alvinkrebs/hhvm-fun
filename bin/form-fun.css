@@ -1,4 +1,4 @@
-body { background-color: red; }
+body { background-color: powderblue; }
 h1 {
     color: blue;
     text-align:center;
@@ -20,6 +20,7 @@ p { color: #ff0000; }
     border: 1px solid black;
     background-color:#ffffff;
     padding: 30px;
+    margin-bottom: 60px;
     width: 80%;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
