@@ -72,11 +72,13 @@ class Skill {
     private int $comfort_level;
     private string $skill;
     private string $badge;
-    public function __construct(string $skill, int $start, int $comfort_level = 100, string $badge = "what.jpg") {
+    private vec<string> $notable;
+    public function __construct(string $skill, int $start, int $comfort_level = 100, string $badge, vec<string> $notable) {
         $this->skill = $skill;
         $this->start = $start;
         $this->comfort_level = $comfort_level;
         $this->badge = $badge;
+        $this->notable = $notable;
     }
     public function get(): Skill {
         return $this;
@@ -110,22 +112,25 @@ class Skill {
         return "Learning";
 
     }
+    public function get_notable(): vec<string> { return $this->notable; }
 }
 class Education {}
 class Experience {
 
-    private string $desc;
-    private string $tip;
-    private string $badge;
     private int $start;
     private int $stop;
+    private string $company;
+    private string $title;
+    private string $badge;
+    private vec<string> $accomplishments;
 
-    public function __construct(int $start, int $stop, string $desc, string $tip, string $badge = "what.jpg") {
+    public function __construct(int $start, int $stop, string $company, string $title, string $badge, vec<string> $accomplishments) {
         $this->start    = $start;
         $this->stop     = $stop;
-        $this->desc     = $desc;
-        $this->tip      = $tip ;
+        $this->company  = $company;
+        $this->title    = $title ;
         $this->badge    = $badge ;
+        $this->accomplishments = $accomplishments;
     }
     private function nice_date(int $d): string {
         if (0 == $d) {
@@ -147,12 +152,17 @@ class Experience {
     public function nice_stop_date(): string {
         return $this->nice_date($this->stop);
     }
+    public function get_daterange(): string {
+        return $this->nice_start_date() . " to " . $this->nice_stop_date();
+    }
     public function nice_exp(): string {
         return $this->nice_start_date() . " to " . $this->nice_stop_date() . ", " . $this->desc;
     }
-    public function get_badge(): string {
-        return $this->badge;
-    }
+    public function get_badge(): string { return $this->badge; }
+    public function get_title(): string { return $this->title; }
+    public function get_company(): string { return $this->company; }
+    public function get_accomplishments(): vec<string> { return $this->accomplishments; }
+
     public function get(): Experience {
         return $this;
     }
@@ -160,6 +170,7 @@ class Experience {
     // The &#013; combined with the style white-space: pre-line; worked for me.
     //
     public function tool_tip(): string {
+
         $hdr   = vec[];
         $hdr[] = Str\repeat("X", 30);
         $hdr[] = Str\repeat("Z", 20);
@@ -168,6 +179,7 @@ class Experience {
         // return $hdr . "<br>" . $this->tip . "<br>" . $ftr;
         // return $hdr . "&#013;" . $this->tip . "&#013;" . $ftr;
         return $hdr[0] . "\n" . $this->tip . "\n" . $hdr[1] . "\n" . $hdr[2];
+
     }
 }
 function me(): string {

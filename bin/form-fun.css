@@ -1,4 +1,4 @@
-body { background-color: powderblue; }
+body { background-color: red; }
 h1 {
     color: blue;
     text-align:center;
@@ -19,6 +19,7 @@ p { color: #ff0000; }
     style:"float:center";
     border: 1px solid black;
     background-color:#ffffff;
+    padding: 30px;
     width: 80%;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -38,8 +39,8 @@ p { color: #ff0000; }
 }
 .tooltip .left h3 p { margin:21px 0; }
 .tooltip .bottom {
-    max-width:500px;
-    transform:translate(50%, -55%); /* seems to move the popup in X,Y space */
+    max-width:300px;
+    transform:translate(30%, -55%); /* seems to move the popup in X,Y space */
     padding:20px;                   /* padding within the box */
     color:#666666;
     background-color:#FFFFE0;
