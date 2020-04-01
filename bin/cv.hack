@@ -1,3 +1,5 @@
+use namespace HH\Lib\Dict;
+
 function cv(): (vec<Experience>, vec<Skill>) {
 
     $exp = vec<Experience> [
@@ -8,47 +10,47 @@ function cv(): (vec<Experience>, vec<Skill>) {
             "SQR writer",
         ]),
 
-        new Experience(19950101, 19951231, "Network General", "Member of Technical Staff", "ng.jpg", vec<string> [
+        new Experience(19950101, 19951231, "Network General (acquired by McAfee)", "Member of Technical Staff", "ng.jpg", vec<string> [
+            "Sybase DBA",
+            "Sybase Replication Server"
+        ]),
+
+        new Experience(19960101, 19981231, "Baystone Software (acquired by Remedy)", "Principle Engineer", "remedy.jpg", vec<string> [
             "First real parser to implement CORA Biz Rules Tool",
             "First real windows server application"
         ]),
 
-        new Experience(19960101, 19981231, "Baystone Software", "Principle Engineer", "remedy.jpg", vec<string> [
-            "First real parser to implement CORA Biz Rules Tool",
-            "First real windows server application"
-        ]),
-
-        new Experience(19990101, 20041231, "TiVo Inc.", "Member of Technical Staff", "tivo.png", vec<string> [
+        new Experience(19990101, 20041231, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
             "First linux device driver, EISA vbi caption reader",
             "IR Database parser and distribution", 
             "Tribune Media Service Content Distribution Service",
             "Senior Manager, Showcase Content Services"
         ]),
 
-        new Experience(20050101, 20061231, "Avvenu Inc.", "Media Engineer", "nokia.jpg", vec<string> [
+        new Experience(20050101, 20061231, "Avvenu (acquired by Nokia)", "Member of Technical Staff", "nokia.jpg", vec<string> [
             "Streaming A/V proxy service",
             "NTLMv2 Biz Proxy service",
         ]),
 
-        new Experience(20060101, 20101231, "Mobilygen", "Member of Technical Staff", "mobi.jpg", vec<string> [
+        new Experience(20060101, 20101231, "Mobilygen (acquired by Maxim)", "Member of Technical Staff", "mobi.jpg", vec<string> [
             "Storage Driver for CF/IDE",
             "Lua extensions for motion tracking",
             "USB Driver",
         ]),
 
-        new Experience(20100101, 20101231, "Blueberry Video", "Founder", "what.jpg", vec<string> [
+        new Experience(20100101, 20101231, "Blueberry Video", "Founder", "blue.jpg", vec<string> [
             "Board bring up",
             "Investor presentations",
             "AV device driver rewrite in support of 16 cores"
         ]),
 
-        new Experience(20110101, 20215231, "Dell Inc.", "Senior Manager", "dell.png", vec<string> [
+        new Experience(20110101, 20215231, "Dell", "Senior Manager", "dell.png", vec<string> [
             "Parser on four platforms, win, osx, linux, sparc",
             "Managed the K2000 team delivering the top 5 customer requests",
             "Multicast image distribution",
         ]),
 
-        new Experience(20160101, 20181231, "LARC Inc.", "Architect", "what.jpg", vec<string> [
+        new Experience(20160101, 20181231, "LARC", "Architect", "larc.png", vec<string> [
             "Go server for mesh network",
             "Several arm projects",
             "BLE/Accelerometer motion control for proprietary AV system",
@@ -196,4 +198,16 @@ function cv(): (vec<Experience>, vec<Skill>) {
 
     return tuple($exp, $ordered);
 
+}
+function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
+    $d = dict[];
+    foreach ($vec as $k => $v) {
+        $d[$v->key()] = $v->get();
+    }
+    $ordered = Dict\sort($d);
+    $sorted_vec = vec[];
+    foreach ($ordered as $k => $v) {
+        $sorted_vec[] = $v->get();
+    }
+    return $sorted_vec;
 }

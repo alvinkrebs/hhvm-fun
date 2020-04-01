@@ -111,18 +111,6 @@ function xhp_build_address(AnAddress $a): XHPRoot {
     $address_block->appendChild(<p>{$ary["State"]}</p>);
     return $address_block;
 }
-function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
-    $d = dict[];
-    foreach ($vec as $k => $v) {
-        $d[$v->key()] = $v->get();
-    }
-    $ordered = Dict\sort($d);
-    $sorted_vec = vec[];
-    foreach ($ordered as $k => $v) {
-        $sorted_vec[] = $v->get();
-    }
-    return $sorted_vec;
-}
 <<__EntryPoint>>
 function xhp_object_methods_run(): void {
 
@@ -193,8 +181,6 @@ function xhp_object_methods_run(): void {
             );
         }
     }
-    echo <h2>Skills</h2>;
-    echo $skill_tab;
 
     $exp_tab = <table id="ex_table" class="ex_table"/>;
     for ($i = 0; $i < count($expSkill[0]); $i++) {
@@ -204,8 +190,12 @@ function xhp_object_methods_run(): void {
             </tr>
        );
     }
-    echo <h2>Experience</h2>;
+
+    echo <h2>Work Experience</h2>;
     echo $exp_tab;
+
+    echo <h2>Skills</h2>;
+    echo $skill_tab;
 
     return;
 
