@@ -3,7 +3,8 @@ use namespace HH\Lib\Str;
 type AnAddress = shape(
     "State"  => string,
     "City"   => string,
-    "Street" => string
+    "Street" => string,
+    "Phone"  => string
 );
 
 type Cv = shape("Experience" => Vector<Experience>, "Skill" => Vector<Skill>);
@@ -14,11 +15,12 @@ class StreetAddress {
     private string $city_str;
     private string $state_str;
     private string $street_str;
+    private string $phone;
 
     const DEF_NAME = "Bob Garrow";
-    const DEF_CITY = "Los Altos Hills";
+    const DEF_CITY = "Los Altos Hills, 94022";
     const DEF_STATE = "California";
-    const DEF_STREET = "13914 Mir Mirou";
+    const DEF_STREET = "13914 Mir Mirou Drive";
 
     public function __construct(
         string $name = StreetAddress::DEF_NAME,
@@ -29,6 +31,7 @@ class StreetAddress {
         $this->city_str = $city;
         $this->state_str = $state;
         $this->street_str = $street;
+        $this->phone = "(408) 921-3413";
     }
     public function street(): string {
         return $this->street_str;
@@ -47,7 +50,8 @@ class StreetAddress {
             "Name"   => $this->name(),
             "State"  => $this->state(),
             "City"   => $this->city(),
-            "Street" => $this->street()
+            "Street" => $this->street(),
+            "Phone"  => $this->phone
         );
     }
 }

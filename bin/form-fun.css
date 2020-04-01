@@ -1,14 +1,16 @@
 body { background-color: powderblue; }
-h1 {
-    color: blue;
-    text-align:center;
+h2   { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; }
+p    { color: #ff0000; }
+
+#contact {
+    align: "center";
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
-p { color: #ff0000; }
 .tt_table {
     style:"float:center";
     border: 1px solid black;
     background-color:#ffffff;
-    width: 80%;
+    width: 70%;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
 }
@@ -21,7 +23,7 @@ p { color: #ff0000; }
     background-color:#ffffff;
     padding: 30px;
     margin-bottom: 60px;
-    width: 80%;
+    width: 70%;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
 }

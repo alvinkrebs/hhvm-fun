@@ -102,14 +102,19 @@ function get_experience(Experience $e): XHPRoot {
 
     return $tt;
 }
-function xhp_build_address(AnAddress $a): XHPRoot {
+function get_address(AnAddress  $a):  XHPRoot {
+
     $ary = Shapes::toArray($a);
-    $address_block = <div id="address" />;
-    $address_block->appendChild(<p>{$ary["Name"]}</p>);
-    $address_block->appendChild(<p>{$ary["Street"]}</p>);
-    $address_block->appendChild(<p>{$ary["City"]}</p>);
-    $address_block->appendChild(<p>{$ary["State"]}</p>);
-    return $address_block;
+
+    $addr = <table align="center" id="contact"/>;
+    $addr->appendChild(<tr><td align="center">{$ary["Name"  ]}</td></tr>);
+    $addr->appendChild(<tr><td align="center">{$ary["Street"]}</td></tr>);
+    $addr->appendChild(<tr><td align="center">{$ary["City"  ]}</td></tr>);
+    $addr->appendChild(<tr><td align="center">{$ary["State" ]}</td></tr>);
+    $addr->appendChild(<tr><td align="center">{$ary["Phone" ]}</td></tr>);
+
+    return $addr;
+
 }
 <<__EntryPoint>>
 function xhp_object_methods_run(): void {
@@ -126,7 +131,7 @@ function xhp_object_methods_run(): void {
 
     $where_i_live = new StreetAddress();
 
-    echo xhp_build_address($where_i_live->all());
+    echo get_address($where_i_live->all());
 
     $expSkill = cv();
 
