@@ -21,7 +21,7 @@ function cv(): (vec<Experience>, vec<Skill>) {
             "First real windows server application"
         ]),
 
-        new Experience(19909101, 20041031, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
+        new Experience(19989101, 20041031, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
             "First linux device driver, EISA vbi caption reader",
             "IR Database parser and distribution", 
             "Tribune Media Service Content Distribution Service",
