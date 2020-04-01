@@ -4,3 +4,5 @@ composer.json
 composer.lock
 hh_autoload.json
 www.pid
+*.swp
+*.swo

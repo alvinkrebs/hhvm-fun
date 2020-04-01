@@ -50,13 +50,16 @@ function cv(): (vec<Experience>, vec<Skill>) {
             "Parser on four platforms, win, osx, linux, sparc",
             "Managed the K2000 team delivering the top 5 customer requests",
             "Multicast image distribution",
+            "Responsible for moving all build scripts from jenkins to bamboo",
         ]),
 
         new Experience(20150901, 20181131, "LARC", "Architect", "larc.png", vec<string> [
             "Go server for mesh network",
-            "Several arm projects",
-            "BLE/Accelerometer motion control for proprietary AV system",
-            "Network Administration"
+            "Patent #15/208,509 for mesh network awarded",
+            "BLE/Accelerometer motion control for proprietary AV system, tinyduino hardware",
+            "Network Administration",
+            "iOS/tvOS media services utilizing dead drop network",
+            "arm go server/circuit supporting fast LAN service of video",
         ]),
 
         new Experience(20180301,        0, "Viziapps", "Principle Engineer", "viziapps.png", vec<string> [
@@ -102,7 +105,7 @@ function cv(): (vec<Experience>, vec<Skill>) {
             "CF/IDE Driver for arm",
             "Infrared Driver for mips/broadcom",
             "Closed Caption decoder for i686",
-            "i2c", "spi"
+            "i2c", "spi", "pci", "pcie",
         ]),
         new Skill("java", 2000, 70, "java.png", vec<string>[
             "SGI StudioCentral extensions written for collateral collection",
