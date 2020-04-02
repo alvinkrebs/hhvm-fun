@@ -185,6 +185,10 @@ function xhp_object_methods_run(): void {
        );
     }
 
+    $edu_tab = <table id="ed_table" class="ed_table"/>;
+    $edu_tab->appendChild(<tr><td>Santa Clara University, MSCE</td><td>1998</td></tr>);
+    $edu_tab->appendChild(<tr><td>University of California, Davis, BS Economics</td><td>1989</td></tr>);
+
     echo
         <head>
             <link rel="stylesheet" href="bin/form-fun.css" />
@@ -199,6 +203,9 @@ function xhp_object_methods_run(): void {
 
     echo <h2>Skills</h2>;
     echo $skill_tab;
+
+    echo <h2>Education</h2>;
+    echo $edu_tab;
 
     return;
 
