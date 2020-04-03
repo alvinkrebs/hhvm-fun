@@ -13,17 +13,19 @@ function cv(): (vec<Experience>, vec<Skill>) {
 
         new Experience(19950101, 19950831, "Network General (acquired by McAfee)", "Member of Technical Staff", "ng.jpg", vec<string> [
             "Sybase DBA",
-            "Sybase Replication Server"
+            "Sybase Replication Server",
+            "Paging System",
         ]),
 
         new Experience(19950901, 19980931, "Baystone Software (acquired by Remedy)", "Principle Engineer", "remedy.jpg", vec<string> [
-            "First real parser to implement CORA Biz Rules Tool",
-            "First real windows server application"
+            "Cora Biz Rules Generator",
+            "CRUD windows binaries using remedy API",
+            "Data migration",
         ]),
 
         new Experience(19980901, 20041031, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
-            "First linux device driver, EISA vbi caption reader",
-            "IR Database parser and distribution", 
+            "EISA vbi caption reader, (linux device driver)",
+            "IR Database parser and distribution tools", 
             "Tribune Media Service Content Distribution Service",
             "Senior Manager, Showcase Content Services",
             "TiVo Tags caption insertion for NBC/Disney",
@@ -32,6 +34,7 @@ function cv(): (vec<Experience>, vec<Skill>) {
         new Experience(20010101, 20060731, "Avvenu (acquired by Nokia)", "Member of Technical Staff", "nokia.jpg", vec<string> [
             "Streaming A/V proxy service",
             "NTLMv2 Biz Proxy service",
+            "Adobe Elements plugin",
         ]),
 
         new Experience(20060801, 20100231, "Mobilygen (acquired by Maxim)", "Member of Technical Staff", "mobi.jpg", vec<string> [
@@ -47,10 +50,9 @@ function cv(): (vec<Experience>, vec<Skill>) {
         ]),
 
         new Experience(20100901, 20150831, "Dell", "Senior Manager", "dell.png", vec<string> [
-            "Parser on four platforms, win, osx, linux, sparc",
-            "Managed the K2000 team delivering the top 5 customer requests",
-            "Multicast image distribution",
-            "Responsible for moving all build scripts from jenkins to bamboo",
+            "Custom Inventory Rules Parser on four platforms, win, osx, linux, sparc",
+            "Managed the K2000 team delivering multicast and L10N",
+            "Jenkins to Atlassian Bamboo migration",
         ]),
 
         new Experience(20150901, 20181131, "LARC", "Architect", "larc.png", vec<string> [
@@ -80,17 +82,19 @@ function cv(): (vec<Experience>, vec<Skill>) {
         new Skill("Windows", 1995, 70, "windows.png", vec<string> [
             "Server programs",
             "System development",
+            "UI, aspx, C#",
         ]),
         new Skill("OSX", 2010, 70, "osx.jpg", vec<string> [
             "Comfortable with IDE",
             "Release product using swift and objective-C",
+            "iOS and tvOS",
         ]),
         new Skill("C++", 1998, 90, "cplus.png", vec<string>[
             "Many projects",
             "TiVo is (was?) a C++ shop",
         ]),
         new Skill("C", 1990, 90, "c.png", vec<string>[
-            "My first 3rd GL language, starting with K&R",
+            "Started with K&R",
             "Favorite libraries: libevent2, libxml, libexpat",
         ]),
         new Skill("C#", 2016, 70, "c-sharp.png", vec<string>[
@@ -98,7 +102,7 @@ function cv(): (vec<Experience>, vec<Skill>) {
             "Several modal applications written for LARC",
         ]),
         new Skill("swift", 2018,  70, "swift.png", vec<string>[
-            "All iOS an OSX applications for LARC were written in swift",
+            "All iOS, tvOS and OSX applications for LARC were written in swift",
             "Worked through three major releases",
         ]),
         new Skill("device drivers",2000, 80, "dd.jpg", vec<string>[
@@ -109,17 +113,19 @@ function cv(): (vec<Experience>, vec<Skill>) {
         ]),
         new Skill("java", 2000, 70, "java.png", vec<string>[
             "SGI StudioCentral extensions written for collateral collection",
-            "Several applets",
+            "applets", "server code for data migration",
         ]),
         new Skill("perl", 1990, 90, "perl.jpg", vec<string>[
             "Discovered perl when awk could not handle very large input",
             "My go to tool to handle any kind of data culling",
+            "extension",
         ]),
         new Skill("lua", 2008, 50, "lua.jpg", vec<string>[
             "extended LUA to support motion tracking",
         ]),
         new Skill("shell scripting", 1990, 90, "shell.jpg", vec<string>[
             "so many scripts",
+            "zsh, favorite interactive shell",
         ]),
         new Skill("make", 1996, 90, "make.png", vec<string>[
             "use make's essentials to build sofware used to distribute media",
