@@ -3,19 +3,16 @@ require __DIR__."/../vendor/hh_autoload.php";
 use namespace HH\Lib\Dict;
 
 class :safe_exp_tool_tip extends :x:element {
-
     attribute string title @required;
     attribute string company @required;
     attribute string badge @required;
     attribute string daterange  @required;
     attribute vec<string> highlights @required;
-
     protected function render(): \XHPRoot {
         $ul = <ul />;
         foreach ($this->:highlights as $h) {
             $ul->appendChild(<li>{$h}</li>);
         }
-
         return
             <div class="tooltip">{$this->:company}
                 <div class="bottom">
@@ -29,70 +26,6 @@ class :safe_exp_tool_tip extends :x:element {
         ;
     }
 }
-class :safe_tool_tip extends :x:element {
-
-    attribute string desc @required;
-    attribute string title @required;
-    attribute string short @required;
-    attribute string badge @required;
-    attribute vec<string> notable  @required;
-
-    protected function render(): \XHPRoot {
-
-        $ul = <ul />;
-        foreach ($this->:notable as $h) {
-            $ul->appendChild(<li>{$h}</li>);
-        }
-
-        return
-            <div class="tooltip">{$this->:short}
-                <div class="bottom">
-                    <img src={"images/" . $this->:badge} />
-                    <h3>{$this->:title}</h3>
-                    <p>{$this->:desc}</p>
-                    {$ul}
-                    <i></i>
-                </div>
-            </div>
-            ;
-    }
-}
-class :tool_tip extends :x:element {
-
-    attribute string desc @required;
-    attribute string title @required;
-    attribute string short @required;
-    attribute string badge @required;
-    attribute vec<string> notable  @required;
-
-    // this is dumb, you have to have some element, like <div> to get this thing to render
-    // leaving them out causes an innocuous error. And since the whole point was to circumvent
-    // the innards of the span tags, we have to use div.
-    //
-    protected function render(): \XHPRoot {
-        return <div>{new skill_tool_tip ($this->:title, $this->:desc, $this->:short, $this->:badge, $this->:notable )}</div>;
-    }
-}
-class :exp_tool_tip extends :x:element {
-    attribute string title @required;
-    attribute string company @required;
-    attribute string badge @required;
-    attribute string daterange  @required;
-    attribute vec<string> highlights @required;
-    protected function render(): \XHPRoot {
-        return <div>{new experience_tool_tip ($this->:title, $this->:company, $this->:badge, $this->:daterange, $this->:highlights)}</div>;
-    }
-}
-function get_tooltip(Skill $s): XHPRoot {
-    $tt = <safe_tool_tip />;
-    $tt->setAttribute("title", $s->nice_skill());
-    $tt->setAttribute("desc",  $s->tool_tip());
-    $tt->setAttribute("short", $s->get_skill());
-    $tt->setAttribute("badge", $s->get_badge());
-    $tt->setAttribute("notable", $s->get_notable());
-
-    return $tt;
-}
 function get_experience(Experience $e): XHPRoot {
     $tt = <safe_exp_tool_tip />;
     $tt->setAttribute("title", $e->get_title());
@@ -103,22 +36,51 @@ function get_experience(Experience $e): XHPRoot {
 
     return $tt;
 }
+class :safe_skill_tool_tip extends :x:element {
+    attribute string desc @required;
+    attribute string title @required;
+    attribute string short @required;
+    attribute string badge @required;
+    attribute vec<string> notable  @required;
+    protected function render(): \XHPRoot {
+        $ul = <ul />;
+        foreach ($this->:notable as $h) {
+            $ul->appendChild(<li>{$h}</li>);
+        }
+        return
+            <div class="tooltip">{$this->:short}
+                <div class="bottom">
+                    <img src={"images/" . $this->:badge} />
+                    <h3>{$this->:title}</h3>
+                    <p>{$this->:desc}</p>
+                    {$ul}
+                    <i></i>
+                </div>
+            </div>
+        ;
+    }
+}
+function get_skill(Skill $s): XHPRoot {
+    $tt = <safe_skill_tool_tip />;
+    $tt->setAttribute("title", $s->nice_skill());
+    $tt->setAttribute("desc",  $s->tool_tip());
+    $tt->setAttribute("short", $s->get_skill());
+    $tt->setAttribute("badge", $s->get_badge());
+    $tt->setAttribute("notable", $s->get_notable());
+    return $tt;
+}
 function get_address(AnAddress  $a):  XHPRoot {
-
     $ary = Shapes::toArray($a);
-
     $addr = <table align="center" id="contact"/>;
     $addr->appendChild(<tr><td align="center">{$ary["Name"  ]}</td></tr>);
     $addr->appendChild(<tr><td align="center">{$ary["Street"]}</td></tr>);
     $addr->appendChild(<tr><td align="center">{$ary["City"  ]}</td></tr>);
     $addr->appendChild(<tr><td align="center">{$ary["State" ]}</td></tr>);
     $addr->appendChild(<tr><td align="center">{$ary["Phone" ]}</td></tr>);
-
     return $addr;
-
 }
 <<__EntryPoint>>
-function xhp_object_methods_run(): void {
+function main_resume(): void {
 
     \Facebook\AutoloadMap\initialize();
     
@@ -134,7 +96,7 @@ function xhp_object_methods_run(): void {
         case 1:
             $skill_tab->appendChild(
                 <tr class="left">
-                    <td>{get_tooltip($expSkill[1][$i  ]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i  ]->get())}</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -145,8 +107,8 @@ function xhp_object_methods_run(): void {
         case 2:
             $skill_tab->appendChild(
                 <tr class="left">
-                    <td>{get_tooltip($expSkill[1][$i  ]->get())}</td>
-                    <td>{get_tooltip($expSkill[1][$i+1]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i  ]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i+1]->get())}</td>
                     <td></td>
                     <td></td>
                </tr>
@@ -156,9 +118,9 @@ function xhp_object_methods_run(): void {
         case 3:
             $skill_tab->appendChild(
                 <tr class="left">
-                    <td>{get_tooltip($expSkill[1][$i  ]->get())}</td>
-                    <td>{get_tooltip($expSkill[1][$i+1]->get())}</td>
-                    <td>{get_tooltip($expSkill[1][$i+2]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i  ]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i+1]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i+2]->get())}</td>
                     <td></td>
                </tr>
             );
@@ -167,10 +129,10 @@ function xhp_object_methods_run(): void {
         default:
             $skill_tab->appendChild(
                 <tr class="tt_row">
-                    <td>{get_tooltip($expSkill[1][$i  ]->get())}</td>
-                    <td>{get_tooltip($expSkill[1][$i+1]->get())}</td>
-                    <td>{get_tooltip($expSkill[1][$i+2]->get())}</td>
-                    <td>{get_tooltip($expSkill[1][$i+3]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i  ]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i+1]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i+2]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i+3]->get())}</td>
                </tr>
             );
         }
