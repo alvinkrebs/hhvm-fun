@@ -2,58 +2,59 @@ require __DIR__."/../vendor/hh_autoload.php";
 
 use namespace HH\Lib\Dict;
 
-class experience_tool_tip  implements XHPUnsafeRenderable {
+class :safe_exp_tool_tip extends :x:element {
 
-    private string $html;
+    attribute string title @required;
+    attribute string company @required;
+    attribute string badge @required;
+    attribute string daterange  @required;
+    attribute vec<string> highlights @required;
 
-    public function __construct(string $title, string $company, string $badge, string $daterange, vec<string> $highlights) {
-        $ul = "<ul>";
-        foreach ($highlights as $h) {
-            $ul .= "<li>" . $h . "</li>";
+    protected function render(): \XHPRoot {
+        $ul = <ul />;
+        foreach ($this->:highlights as $h) {
+            $ul->appendChild(<li>{$h}</li>);
         }
-        $ul .= "</ul>";
-        $html_sample = <<<h_sample
-            <div class="tooltip">$company
+
+        return
+            <div class="tooltip">{$this->:company}
                 <div class="bottom">
-                    <img src="images/$badge" />
-                    <h3>$title</h3>
-                    <p>$daterange</p>
-                    $ul
+                    <img src={"images/" . $this->:badge} />
+                    <h3>{$this->:title}</h3>
+                    <p>{$this->:daterange}</p>
+                    {$ul}
                     <i></i>
                 </div>
             </div>
-h_sample;
-        $this->html = $html_sample;
-    }
-    public function toHTMLString(): string {
-        return $this->html;
+        ;
     }
 }
-class skill_tool_tip implements XHPUnsafeRenderable {
+class :safe_tool_tip extends :x:element {
 
-    private string $html;
+    attribute string desc @required;
+    attribute string title @required;
+    attribute string short @required;
+    attribute string badge @required;
+    attribute vec<string> notable  @required;
 
-    public function __construct(string $title, string $desc, string $short_desc, string $badge, vec<string> $highlights) {
-        $ul = "<ul>";
-        foreach ($highlights as $h) {
-            $ul .= "<li>" . $h . "</li>";
+    protected function render(): \XHPRoot {
+
+        $ul = <ul />;
+        foreach ($this->:notable as $h) {
+            $ul->appendChild(<li>{$h}</li>);
         }
-        $ul .= "</ul>";
-        $html_sample = <<<h_sample
-            <div class="tooltip">$short_desc
+
+        return
+            <div class="tooltip">{$this->:short}
                 <div class="bottom">
-                    <img src="images/$badge" />
-                    <h3>$title</h3>
-                    <p>$desc</p>
-                    $ul
+                    <img src={"images/" . $this->:badge} />
+                    <h3>{$this->:title}</h3>
+                    <p>{$this->:desc}</p>
+                    {$ul}
                     <i></i>
                 </div>
             </div>
-h_sample;
-        $this->html = $html_sample;
-    }
-    public function toHTMLString(): string {
-        return $this->html;
+            ;
     }
 }
 class :tool_tip extends :x:element {
@@ -83,7 +84,7 @@ class :exp_tool_tip extends :x:element {
     }
 }
 function get_tooltip(Skill $s): XHPRoot {
-    $tt = <tool_tip />;
+    $tt = <safe_tool_tip />;
     $tt->setAttribute("title", $s->nice_skill());
     $tt->setAttribute("desc",  $s->tool_tip());
     $tt->setAttribute("short", $s->get_skill());
@@ -93,7 +94,7 @@ function get_tooltip(Skill $s): XHPRoot {
     return $tt;
 }
 function get_experience(Experience $e): XHPRoot {
-    $tt = <exp_tool_tip />;
+    $tt = <safe_exp_tool_tip />;
     $tt->setAttribute("title", $e->get_title());
     $tt->setAttribute("company", $e->get_company());
     $tt->setAttribute("badge", $e->get_badge());
