@@ -33,7 +33,6 @@ function get_experience(Experience $e): XHPRoot {
     $tt->setAttribute("badge", $e->get_badge());
     $tt->setAttribute("daterange", $e->get_daterange());
     $tt->setAttribute("highlights", $e->get_accomplishments());
-
     return $tt;
 }
 class :safe_skill_tool_tip extends :x:element {
