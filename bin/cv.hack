@@ -210,6 +210,7 @@ function cv(): (vec<Experience>, vec<Skill>) {
     ];
 
     $ordered_skill = sort_vec_skill($skill);
+
     $ordered_exp = sort_vec_exp($exp);
 
     return tuple($ordered_exp, $ordered_skill);
@@ -227,6 +228,11 @@ function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
     }
     return $sorted_vec;
 }
+/*
+    Called just before returning to "main". 
+    TIL: We can sort any which way using the $comparator argument of sort.
+
+*/
 function sort_vec_exp(vec<Experience> $vec): vec<Experience> {
     $d = dict[];
     foreach ($vec as $k => $v) {

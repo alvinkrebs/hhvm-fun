@@ -2,7 +2,11 @@ require __DIR__."/../vendor/hh_autoload.php";
 
 use namespace HH\Lib\Dict;
 
-class :safe_exp_tool_tip extends :x:element {
+/*
+    called by get_experience() when it constructs the experience tooltip
+    TIL: how to call hack inside {}, see the img src tag.
+*/
+class :experience_tooltip extends :x:element {
     attribute string title @required;
     attribute string company @required;
     attribute string badge @required;
@@ -27,7 +31,7 @@ class :safe_exp_tool_tip extends :x:element {
     }
 }
 function get_experience(Experience $e): XHPRoot {
-    $tt = <safe_exp_tool_tip />;
+    $tt = <experience_tooltip />;
     $tt->setAttribute("title", $e->get_title());
     $tt->setAttribute("company", $e->get_company());
     $tt->setAttribute("badge", $e->get_badge());
@@ -35,7 +39,10 @@ function get_experience(Experience $e): XHPRoot {
     $tt->setAttribute("highlights", $e->get_accomplishments());
     return $tt;
 }
-class :safe_skill_tool_tip extends :x:element {
+/*
+    called by get_skill() when it constructs the skill tooltip
+*/
+class :skill_tooltip extends :x:element {
     attribute string desc @required;
     attribute string title @required;
     attribute string short @required;
@@ -60,7 +67,7 @@ class :safe_skill_tool_tip extends :x:element {
     }
 }
 function get_skill(Skill $s): XHPRoot {
-    $tt = <safe_skill_tool_tip />;
+    $tt = <skill_tooltip />;
     $tt->setAttribute("title", $s->nice_skill());
     $tt->setAttribute("desc",  $s->tool_tip());
     $tt->setAttribute("short", $s->get_skill());
@@ -147,9 +154,12 @@ function main_resume(): void {
        );
     }
 
-    $edu_tab = <table id="ed_table" class="ed_table"/>;
-    $edu_tab->appendChild(<tr><td>Santa Clara University, MSCE</td><td>1998</td></tr>);
-    $edu_tab->appendChild(<tr><td>University of California, Davis, BS Economics</td><td>1989</td></tr>);
+    $edu_tab = <<<_edu_tab
+        <table id="ed_table" class="ed_table"/>
+            <tr><td>Santa Clara University, MSCE/td><td>1998</td></tr>
+            <tr><td>University of California, Davis, BS Economics</td><td>1989</td></tr>
+        </table>
+_edu_tab;
 
     echo
         <head>
