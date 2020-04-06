@@ -18,7 +18,7 @@ class :experience_tooltip extends :x:element {
             $ul->appendChild(<li>{$h}</li>);
         }
         return
-            <div class="tooltip">{$this->:company}
+            <div class="tooltip"><div class="tab_line">{$this->:company}</div>
                 <div class="bottom">
                     <img src={"images/" . $this->:badge} />
                     <h3>{$this->:title}</h3>
@@ -54,7 +54,7 @@ class :skill_tooltip extends :x:element {
             $ul->appendChild(<li>{$h}</li>);
         }
         return
-            <div class="tooltip">{$this->:short}
+            <div class="tooltip"><div class="tab_line">{$this->:short}</div>
                 <div class="bottom">
                     <img src={"images/" . $this->:badge} />
                     <h3>{$this->:title}</h3>
@@ -95,13 +95,13 @@ function main_resume(): void {
     //
     // table of links with tooltips
     //
-    $skill_tab = <table id="tt_table" class="tt_table"/>;
+    $skill_tab = <table class="tt_table"/>;
     for ($i = 0; $i < count($expSkill[1]); $i += 4) {
         switch (count($expSkill[1]) - $i) {
 
         case 1:
             $skill_tab->appendChild(
-                <tr class="left">
+                <tr class="tt_row">
                     <td>{get_skill($expSkill[1][$i  ]->get())}</td>
                     <td></td>
                     <td></td>
@@ -112,7 +112,7 @@ function main_resume(): void {
 
         case 2:
             $skill_tab->appendChild(
-                <tr class="left">
+                <tr class="tt_row">
                     <td>{get_skill($expSkill[1][$i  ]->get())}</td>
                     <td>{get_skill($expSkill[1][$i+1]->get())}</td>
                     <td></td>
@@ -123,7 +123,7 @@ function main_resume(): void {
 
         case 3:
             $skill_tab->appendChild(
-                <tr class="left">
+                <tr class="tt_row">
                     <td>{get_skill($expSkill[1][$i  ]->get())}</td>
                     <td>{get_skill($expSkill[1][$i+1]->get())}</td>
                     <td>{get_skill($expSkill[1][$i+2]->get())}</td>
@@ -147,17 +147,17 @@ function main_resume(): void {
     $exp_tab = <table id="ex_table" class="ex_table"/>;
     for ($i = 0; $i < count($expSkill[0]); $i++) {
         $exp_tab->appendChild(
-            <tr class="left">
+            <tr class="tt_row">
                 <td>{get_experience($expSkill[0][$i]->get())}</td>
-                <td>{$expSkill[0][$i]->get_exprange()}</td>
+                <td class="tab_line">{$expSkill[0][$i]->get_exprange()}</td>
             </tr>
        );
     }
 
     $edu_tab = <<<_edu_tab
         <table id="ed_table" class="ed_table"/>
-            <tr><td>Santa Clara University, MSCE/td><td>1998</td></tr>
-            <tr><td>University of California, Davis, BS Economics</td><td>1989</td></tr>
+            <tr><td class="tab_line">Santa Clara University, MSCE</td><td class="tab_line">1998</td></tr>
+            <tr><td class="tab_line">University of California, Davis, BS Economics</td><td class="tab_line">1989</td></tr>
         </table>
 _edu_tab;
 

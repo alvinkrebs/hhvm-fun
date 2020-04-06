@@ -1,6 +1,7 @@
 body { background-color: powderblue; }
 h2   { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; }
 p    { color: #ff0000; }
+.tab_line { color: #0000ff; }
 
 #contact {
     align: "center";
@@ -8,18 +9,18 @@ p    { color: #ff0000; }
 }
 .tt_table {
     style:"float:center";
-    border: 1px solid black;
+    border: 2px solid black;
     background-color:#ffffff;
     width: 80%;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
 }
 .tt_row { border: 1px solid black; }
-#tt_table tr:nth-child(even){background-color: #f2f2f2;}
+.tt_table tr:nth-child(even){background-color: #f2f2f2;}
 
 .ex_table {
     style:"float:center";
-    border: 1px solid black;
+    border: 2px solid black;
     background-color:#ffffff;
     padding: 30px;
     margin-bottom: 60px;
@@ -32,7 +33,7 @@ p    { color: #ff0000; }
 
 .ed_table {
     style:"float:center";
-    border: 1px solid black;
+    border: 2px solid black;
     background-color:#ffffff;
     padding: 30px;
     margin-bottom: 60px;
@@ -56,7 +57,7 @@ p    { color: #ff0000; }
     max-width:300px;
     transform:translate(30%, -55%); /* seems to move the popup in X,Y space */
     padding:20px;                   /* padding within the box */
-    color:#666666;
+    color:#666666;                  /* changes font color in pop up only */
     background-color:#FFFFE0;
     font-weight:normal;
     font-size:13px;
