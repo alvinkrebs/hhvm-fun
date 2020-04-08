@@ -2,10 +2,16 @@ body { background-color: powderblue; }
 h2   { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; }
 p    { color: #ff0000; }
 .tab_line { color: #0000ff; }
+.qr_img {
+    width:180px;
+    height:180px;
+}
 
 #contact {
     align: "center";
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    width: 60%;
 }
 .tt_table {
     style:"float:center";
