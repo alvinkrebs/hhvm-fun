@@ -19,7 +19,7 @@ class :experience_tooltip extends :x:element {
         }
         return
             <div class="tooltip"><div class="tab_line">{$this->:company}</div>
-                <div class="bottom">
+                <div class="left">
                     <img src={"images/" . $this->:badge} />
                     <h3>{$this->:title}</h3>
                     <p>{$this->:daterange}</p>
@@ -48,6 +48,7 @@ class :skill_tooltip extends :x:element {
     attribute string short @required;
     attribute string badge @required;
     attribute vec<string> notable  @required;
+    attribute bool on_the_right;
     protected function render(): \XHPRoot {
         $ul = <ul />;
         foreach ($this->:notable as $h) {
@@ -55,7 +56,7 @@ class :skill_tooltip extends :x:element {
         }
         return
             <div class="tooltip"><div class="tab_line">{$this->:short}</div>
-                <div class="bottom">
+                <div class={$this->:on_the_right ? "right" : "left"}>
                     <img src={"images/" . $this->:badge} />
                     <h3>{$this->:title}</h3>
                     <p>{$this->:desc}</p>
@@ -66,8 +67,9 @@ class :skill_tooltip extends :x:element {
         ;
     }
 }
-function get_skill(Skill $s): XHPRoot {
+function get_skill(Skill $s, bool $on_the_right = false): XHPRoot {
     $tt = <skill_tooltip />;
+    $tt->setAttribute("on_the_right", $on_the_right);
     $tt->setAttribute("title", $s->nice_skill());
     $tt->setAttribute("desc",  $s->tool_tip());
     $tt->setAttribute("short", $s->get_skill());
@@ -131,7 +133,7 @@ function main_resume(): void {
                 <tr class="tt_row">
                     <td>{get_skill($expSkill[1][$i  ]->get())}</td>
                     <td>{get_skill($expSkill[1][$i+1]->get())}</td>
-                    <td>{get_skill($expSkill[1][$i+2]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i+2]->get(), true)}</td>
                     <td></td>
                </tr>
             );
@@ -142,8 +144,8 @@ function main_resume(): void {
                 <tr class="tt_row">
                     <td>{get_skill($expSkill[1][$i  ]->get())}</td>
                     <td>{get_skill($expSkill[1][$i+1]->get())}</td>
-                    <td>{get_skill($expSkill[1][$i+2]->get())}</td>
-                    <td>{get_skill($expSkill[1][$i+3]->get())}</td>
+                    <td>{get_skill($expSkill[1][$i+2]->get(), true)}</td>
+                    <td>{get_skill($expSkill[1][$i+3]->get(), true)}</td>
                </tr>
             );
         }
