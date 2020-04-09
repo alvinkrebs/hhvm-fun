@@ -83,13 +83,14 @@ function get_address(AnAddress  $a):  XHPRoot {
     $addr->appendChild(<tr><td colspan="3" align="center">{$ary["Name"  ]}</td></tr>);
     $addr->appendChild(
         <tr>
-            <td rowspan="5"><img align="left" class="qr_img" src="images/qr-cntc.png" /></td>
+            <td rowspan="4"><img align="left" class="qr_img" src="images/qr-cntc.png" /></td>
             <td align="center">{$ary["Street"]}</td>
-            <td rowspan="5"><img align="right" class="qr_img" src="images/qr-http.png" /></td>
+            <td rowspan="4"><img align="right" class="qr_img" src="images/qr-http.png" /></td>
         </tr>);
     $addr->appendChild(<tr><td colspan="1" align="center">{$ary["City"  ]}</td></tr>);
     $addr->appendChild(<tr><td colspan="1" align="center">{$ary["State" ]}</td></tr>);
     $addr->appendChild(<tr><td colspan="1" align="center">{$ary["Phone" ]}</td></tr>);
+    $addr->appendChild(<tr><td id="vcard_page">vcard</td><td></td><td id="vcard_page">this page</td></tr>);
     return $addr;
 }
 <<__EntryPoint>>
