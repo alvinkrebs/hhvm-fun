@@ -94,18 +94,32 @@ p    { color: #ff0000; }
     background-color:#FFFFE0;
     box-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
+/*
+    TIL:
+        .tooltip.right locates the popup and defines its size
 
+        .tooltip.right.
+            top and right place the tooltip on the large canvas. This is absolute positioning so, don't use it.
+            transform is the relative location of the popup. The first value is the x position adjustment while
+                the second value is the y position adjustment. transform moves an element from its original location
+                to the new location according to % or px. Not sure why the original position is so far down or so far
+                right.
+
+        .tooltip.right.i.after builds the little pointer nib and places it on the larger tooltip popup
+
+*/
 .tooltip .right {
 
-    /* max-width:300px;
-    transform:translate(30%, -55%); */
-
+/*
+    max-width:300px;
+    transform:translate(30%, -55%);
+    top:50%;                        absolute positioning, if commented out, it'll stick in one location on page
+    right:25%;                      prevent popup if at 100%
+*/
     min-width:200px;
     max-width:400px;
-    /* top:50%;                absolute positioning, if commented out, it'll stick in one location on page */
-    /* right:25%;              prevent popup if at 100% */
     margin-right:20px;
-    transform:translate(-110%, -50%);   /* locates the popup relative to the td entry */
+    transform:translate(-110%, -55%);
 
     padding:20px;
     color:#666666;
@@ -122,6 +136,9 @@ p    { color: #ff0000; }
 .tooltip:hover .right { display:block; }
 .tooltip .right h3 p { margin:21px 0; }
 .tooltip .right img { width:40px; }
+/*
+    TIL, this object is all about the little triangle pointer
+*/
 .tooltip .right i {
     position:absolute;
     top:50%;
