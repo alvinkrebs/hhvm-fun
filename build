@@ -24,12 +24,11 @@ install_hhvm() {
     sudo mv composer.phar /usr/local/bin/composer
     rm installer
 
-    # build networking configuration on aws
-    #
 }
+## grab my stuff
 ##
-## the chicken before the egg ...
-## git clone https://github.com/alvinkrebs/hhvm-fun.git
+git clone https://github.com/alvinkrebs/hhvm-fun.git
+
 ##
 set -x
 ##
