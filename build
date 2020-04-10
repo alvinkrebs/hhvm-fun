@@ -1,3 +1,32 @@
+## start really fresh ...
+install_hhvm() {
+
+    # must be run as root
+    #
+    apt-get update
+    apt-get install software-properties-common apt-transport-https
+    apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xB4112585D386EB94
+    add-apt-repository https://dl.hhvm.com/ubuntu
+    apt-get update
+    apt-get install hhvm
+    #
+    # needed to install composer, which populates the vendor directory of the project
+    # it's a heavy mem user, so, you'll need some swap to complete this ...
+    # https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
+    #
+    apt install php7.2-cli
+    dd if=/dev/zero of=/swapfile bs=128M count=32
+    mkswap /swapfile
+    swapon /swapfile
+
+    curl -O https://getcomposer.org/installer
+    php ./installer
+    sudo mv composer.phar /usr/local/bin/composer
+    rm installer
+
+    # build networking configuration on aws
+    #
+}
 ##
 ## the chicken before the egg ...
 ## git clone https://github.com/alvinkrebs/hhvm-fun.git
@@ -40,16 +69,9 @@ eof
 composer require hhvm/hsl hhvm/hhvm-autoload facebook/xhp-lib
 
 ##
-## create the autoload script
-##
-./vendor/bin/hh-autoload
-
-hhvm bin/sq.hack
-
-##
 ## hhvm -m server -p 8080 
 ## 1. create an index.php file in bin
-## 2. from this directory ln -sf bin/indedx.php
+## 2. from this directory ln -sf bin/index.php
 ## 3. run hhvm -m serfver -p 8080 from this directory
 ## 4. on a local machine, reverence hhvmfun:8080/
-##
+## https://www.qr-code-generator.com/

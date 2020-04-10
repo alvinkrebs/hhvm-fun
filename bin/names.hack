@@ -77,6 +77,9 @@ function get_skill(Skill $s, bool $on_the_right = false): XHPRoot {
     $tt->setAttribute("notable", $s->get_notable());
     return $tt;
 }
+/*
+    generate qr codes with http://www.qrcode-monkey.com/
+*/
 function get_address(AnAddress  $a):  XHPRoot {
     $ary = Shapes::toArray($a);
     $addr = <table align="center" id="contact"/>;
@@ -90,7 +93,7 @@ function get_address(AnAddress  $a):  XHPRoot {
     $addr->appendChild(<tr><td colspan="1" align="center">{$ary["City"  ]}</td></tr>);
     $addr->appendChild(<tr><td colspan="1" align="center">{$ary["State" ]}</td></tr>);
     $addr->appendChild(<tr><td colspan="1" align="center">{$ary["Phone" ]}</td></tr>);
-    $addr->appendChild(<tr><td id="vcard_page">vcard</td><td></td><td id="vcard_page">this page</td></tr>);
+    $addr->appendChild(<tr><td id="vcard_page">vcard</td><td></td></tr>);
     return $addr;
 }
 <<__EntryPoint>>
