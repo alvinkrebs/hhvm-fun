@@ -175,10 +175,10 @@ _edu_tab;
     $crd_tab = <<<_crd_tab
         <table>
             <tr><td class="crd_hdr">Brought to you by ...</td></tr>
-            <tr><td class="crd_line"><a href=http://www.menucool.com>http://www.menucool.com</a></td></tr>
-            <tr><td class="crd_line"><a href=https://dl.hhvm.com/ubuntu>https://dl.hhvm.com/ubuntu</a></td></tr>
-            <tr><td class="crd_line"><a href=http://www.qrcode-monkey.com>http://www.qrcode-monkey.com</a></td></tr>
-            <tr><td class="crd_line"><a href=https://github.com/alvinkrebs/hhvm-fun.git>https://github.com/alvinkrebs/hhvm-fun.git</a></td></tr>
+            <tr><td class="crd_line"><a target="_blank" href=http://www.menucool.com>http://www.menucool.com</a></td></tr>
+            <tr><td class="crd_line"><a target="_blank" href=https://dl.hhvm.com/ubuntu>https://dl.hhvm.com/ubuntu</a></td></tr>
+            <tr><td class="crd_line"><a target="_blank" href=http://www.qrcode-monkey.com>http://www.qrcode-monkey.com</a></td></tr>
+            <tr><td class="crd_line"><a target="_blank" href=https://github.com/alvinkrebs/hhvm-fun.git>https://github.com/alvinkrebs/hhvm-fun.git</a></td></tr>
         </table>
 
 _crd_tab;
