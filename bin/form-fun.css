@@ -5,6 +5,11 @@ body { background-color: powderblue; }
 h2   { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; }
 p    { color: #ff0000; }
 .tab_line { color: #0000ff; }
+.crd_line {
+    text-indent: 10px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+.crd_hdr  { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; }
 .qr_img {
     width:180px;
     height:180px;
