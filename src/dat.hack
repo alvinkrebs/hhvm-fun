@@ -78,7 +78,7 @@ class Skill {
     private string $badge;
     private vec<string> $notable;
     public function __construct(string $skill, int $start, int $comfort_level = 100, string $badge, vec<string> $notable) {
-        $this->skill = $skill;
+        $this->skill = Str\format("%-16s", $skill);
         $this->start = $start;
         $this->comfort_level = $comfort_level;
         $this->badge = $badge;
