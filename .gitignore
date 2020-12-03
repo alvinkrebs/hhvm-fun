@@ -6,3 +6,4 @@ hh_autoload.json
 www.pid
 *.swp
 *.swo
+.DS_Store
