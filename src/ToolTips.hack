@@ -1,16 +1,18 @@
 use namespace HH\Lib\Dict;
+use namespace Facebook\XHP\Core as x;
+use type Facebook\XHP\HTML\{script, table, tr, td, img, ul, div, h3, p, li, i};
 
 /*
     called by get_experience() when it constructs the experience tooltip
     TIL: how to call hack inside {}, see the img src tag.
 */
-class :experience_tooltip extends :x:element {
+final xhp class experience_tooltip extends x\element {
     attribute string title @required;
     attribute string company @required;
     attribute string badge @required;
     attribute string daterange  @required;
     attribute vec<string> highlights @required;
-    protected function render(): \XHPRoot {
+    protected async function renderAsync(): Awaitable<x\node> {
         $ul = <ul />;
         foreach ($this->:highlights as $h) {
             $ul->appendChild(<li>{$h}</li>);
@@ -28,7 +30,7 @@ class :experience_tooltip extends :x:element {
         ;
     }
 }
-function get_experience(Experience $e): XHPRoot {
+function get_experience(Experience $e): x\element {
     $tt = <experience_tooltip />;
     $tt->setAttribute("title", $e->get_title());
     $tt->setAttribute("company", $e->get_company());
@@ -40,14 +42,14 @@ function get_experience(Experience $e): XHPRoot {
 /*
     called by get_skill() when it constructs the skill tooltip
 */
-class :skill_tooltip extends :x:element {
+final xhp class skill_tooltip extends x\element {
     attribute string desc @required;
     attribute string title @required;
     attribute string short @required;
     attribute string badge @required;
     attribute vec<string> notable  @required;
     attribute bool on_the_right;
-    protected function render(): \XHPRoot {
+    protected async function renderAsync(): Awaitable<x\node> {
         $ul = <ul />;
         foreach ($this->:notable as $h) {
             $ul->appendChild(<li>{$h}</li>);
@@ -65,7 +67,7 @@ class :skill_tooltip extends :x:element {
         ;
     }
 }
-function get_skill(Skill $s, bool $on_the_right = false): XHPRoot {
+function get_skill(Skill $s, bool $on_the_right = false): x\element {
     $tt = <skill_tooltip />;
     $tt->setAttribute("on_the_right", $on_the_right);
     $tt->setAttribute("title", $s->nice_skill());
@@ -78,7 +80,7 @@ function get_skill(Skill $s, bool $on_the_right = false): XHPRoot {
 /*
     generate qr codes with http://www.qrcode-monkey.com/
 */
-function get_address(AnAddress  $a):  XHPRoot {
+function get_address(AnAddress  $a): x\node {
     $ary = Shapes::toArray($a);
     $addr = <table align="center" id="contact"/>;
     $addr->appendChild(<tr><td colspan="3" align="center">{$ary["Name"  ]}</td></tr>);

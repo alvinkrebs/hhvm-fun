@@ -1,5 +1,11 @@
+<?hh
+
+use type Facebook\XHP\HTML\{h2, script, link, head, table, tr, td};
+
 <<__EntryPoint>>
-function main_resume(): void {
+async function main_resume(): Awaitable<void> {
+
+    require_once(__DIR__.'/../vendor/autoload.hack');
 
     \Facebook\AutoloadMap\initialize();
     
@@ -82,27 +88,30 @@ _edu_tab;
             <tr><td class="crd_line"><a target="_blank" href=http://www.qrcode-monkey.com>http://www.qrcode-monkey.com</a></td></tr>
             <tr><td class="crd_line"><a target="_blank" href=https://github.com/alvinkrebs/hhvm-fun.git>https://github.com/alvinkrebs/hhvm-fun.git</a></td></tr>
         </table>
-
 _crd_tab;
 
-    echo
+    $head_tab = <<<_head_tab
         <head>
-            <link rel="stylesheet" href="bin/form-fun.css" />
+            <link rel="stylesheet" href="src/form-fun.css" />
             <link rel="stylesheet" href="third-party/tooltip/themes/1/tooltip.css" />
             <script src="third-party/tooltip/themes/1/tooltip.js"></script>
-        </head>;
+        </head>
+_head_tab;
 
-    echo get_address(new StreetAddress()->all());
+    echo $head_tab;
 
-    echo <h2>Work Experience</h2>;
-    echo $exp_tab;
+    echo await get_address(new StreetAddress()->all())->toStringAsync();
 
-    echo <h2>Skills</h2>;
-    echo $skill_tab;
+    echo "<h2>Work Experience</h2>";
+    echo await $exp_tab->toStringAsync();
 
-    echo <h2>Education</h2>;
+    echo "<h2>Skills</h2>";
+    echo await $skill_tab->toStringAsync();
+
+    echo "<h2>Education</h2>";
     echo $edu_tab;
 
+    echo "<h2>Tooltip Credits ...</h2>";
     echo $crd_tab;
 
     return;
