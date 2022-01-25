@@ -118,7 +118,6 @@ class Skill {
     }
     public function get_notable(): vec<string> { return $this->notable; }
 }
-class Education {}
 class Experience {
 
     private int $start;
@@ -183,6 +182,72 @@ class Experience {
     public function get_accomplishments(): vec<string> { return $this->accomplishments; }
 
     public function get(): Experience {
+        return $this;
+    }
+}
+class Education {
+    private int $start;
+    private int $stop;
+    private string $school;
+    private string $degree;
+    private string $badge;
+    private vec<string> $accomplishments;
+
+    public function __construct(int $start, int $stop, string $school, string $degree, string $badge, vec<string> $accomplishments) {
+        $this->start    = $start;
+        $this->stop     = $stop;
+        $this->school  = $school;
+        $this->degree    = $degree ;
+        $this->badge    = $badge ;
+        $this->accomplishments = $accomplishments;
+    }
+    public function ikey(): int {
+        return $this->start;
+    }
+    public function key(): string {
+        return (string)$this->start;
+    }
+    private function edu_date(int $d): string {
+        if (0 == $d) {
+            return date("Y/m");
+        }
+        $year   = (int)($d / 10000);
+        $month  = $d - (10000 * $year);
+        $month /= 100;
+        return Str\format("%d/%02d", $year, (int)$month);
+    }
+    private function nice_date(int $d): string {
+        if (0 == $d) {
+            return date("Y-m-d");
+        }
+
+        $year   = (int)($d / 10000);
+        $day    = (int)($d % 100);
+        $month  = $d - (10000 * $year);
+        $month /= 100;
+
+        // note: don't lead namespace'd with \\
+        //
+        return Str\format("%d-%02d-%02d", $year, (int)$month, $day);
+    }
+    public function nice_start_date(): string {
+        return $this->nice_date($this->start);
+    }
+    public function nice_stop_date(): string {
+        return $this->nice_date($this->stop);
+    }
+    public function get_daterange(): string {
+        return $this->nice_start_date() . " to " . $this->nice_stop_date();
+    }
+    public function get_edurange(): string {
+        return $this->edu_date($this->start) . " to " . $this->edu_date($this->stop);
+    }
+    public function get_badge(): string { return $this->badge; }
+    public function get_degree(): string { return $this->degree; }
+    public function get_school(): string { return $this->school; }
+    public function get_accomplishments(): vec<string> { return $this->accomplishments; }
+
+    public function get(): Education {
         return $this;
     }
 }

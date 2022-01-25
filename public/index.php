@@ -73,12 +73,15 @@ async function main_resume(): Awaitable<void> {
        );
     }
 
-    $edu_tab = <<<_edu_tab
-        <table id="ed_table" class="ed_table"/>
-            <tr><td class="tab_line">Santa Clara University, MSCE</td><td class="tab_line">1998</td></tr>
-            <tr><td class="tab_line">University of California, Davis, BS Economics</td><td class="tab_line">1989</td></tr>
-        </table>
-_edu_tab;
+    $edu_tab = <table id="ex_table" class="ex_table"/>;
+    for ($i = 0; $i < count($expSkill[2]); $i++) {
+        $edu_tab->appendChild(
+            <tr class="tt_row">
+                <td>{get_education($expSkill[2][$i]->get())}</td>
+                <td class="tab_line">{$expSkill[2][$i]->get_edurange()}</td>
+            </tr>
+       );
+    }
 
     $crd_tab = <<<_crd_tab
         <table>
@@ -108,7 +111,7 @@ _head_tab;
     echo await $skill_tab->toStringAsync();
 
     echo "<h2>Education</h2>";
-    echo $edu_tab;
+    echo await $edu_tab->toStringAsync();
 
     echo "<h2>Tooltip Credits ...</h2>";
     echo $crd_tab;

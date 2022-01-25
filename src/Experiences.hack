@@ -1,7 +1,7 @@
 use namespace HH\Lib\Dict;
 use namespace HH\Lib\Str;
 
-function Experiences(): (vec<Experience>, vec<Skill>) {
+function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
 
     $exp = vec<Experience> [
 
@@ -70,7 +70,7 @@ function Experiences(): (vec<Experience>, vec<Skill>) {
             "AWS Administration: S3, EC2, Elastic Beanstalk, RDS"
         ]),
 
-        new Experience(20200501,        0, "Realtime Innovation", "Build/Release Engineer", "rti_logo.jpeg", vec<string> [
+        new Experience(20200501, 0, "Realtime Innovation", "Build/Release Engineer", "rti_logo.jpeg", vec<string> [
             "Jenkins Automation",
             "Groovy scripting",
             "Sales Force Automation User"
@@ -215,11 +215,18 @@ function Experiences(): (vec<Experience>, vec<Skill>) {
         ]),
     ];
 
+    $edu = vec<Education>[
+        new Education(19830901, 19890801, "University California at Davis", "Economics", "ucd.png", vec<string> [ "Bachelors of Science" ]),
+        new Education(19920901, 19980601, "Santa Clara University", "Engineering", "scu.png", vec<string> [ "Masters of Science" ]),
+    ];
+
     $ordered_skill = sort_vec_skill($skill);
 
     $ordered_exp = sort_vec_exp($exp);
 
-    return tuple($ordered_exp, $ordered_skill);
+    $ordered_edu = sort_vec_edu($edu);
+
+    return tuple($ordered_exp, $ordered_skill, $ordered_edu);
 
 }
 function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
@@ -240,6 +247,18 @@ function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
 
 */
 function sort_vec_exp(vec<Experience> $vec): vec<Experience> {
+    $d = dict[];
+    foreach ($vec as $k => $v) {
+        $d[$v->key()] = $v->get();
+    }
+    $ordered = Dict\sort($d, function($a, $b): int { return $b->ikey() - $a->ikey() ; });
+    $sorted_vec = vec[];
+    foreach ($ordered as $k => $v) {
+        $sorted_vec[] = $v->get();
+    }
+    return $sorted_vec;
+}
+function sort_vec_edu(vec<Education> $vec): vec<Education> {
     $d = dict[];
     foreach ($vec as $k => $v) {
         $d[$v->key()] = $v->get();

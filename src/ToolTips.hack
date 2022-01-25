@@ -39,6 +39,40 @@ function get_experience(Experience $e): x\element {
     $tt->setAttribute("highlights", $e->get_accomplishments());
     return $tt;
 }
+
+final xhp class education_tooltip extends x\element {
+    attribute string degree @required;
+    attribute string school @required;
+    attribute string badge @required;
+    attribute string daterange  @required;
+    attribute vec<string> highlights @required;
+    protected async function renderAsync(): Awaitable<x\node> {
+        $ul = <ul />;
+        foreach ($this->:highlights as $h) {
+            $ul->appendChild(<li>{$h}</li>);
+        }
+        return
+            <div class="tooltip"><div class="tab_line">{$this->:school}</div>
+                <div class="left">
+                    <img src={"images/" . $this->:badge} />
+                    <h3>{$this->:degree}</h3>
+                    <p>{$this->:daterange}</p>
+                    {$ul}
+                    <i></i>
+                </div>
+            </div>
+        ;
+    }
+}
+function get_education(Education $e): x\element {
+    $tt = <education_tooltip />;
+    $tt->setAttribute("degree", $e->get_degree());
+    $tt->setAttribute("school", $e->get_school());
+    $tt->setAttribute("badge", $e->get_badge());
+    $tt->setAttribute("daterange", $e->get_daterange());
+    $tt->setAttribute("highlights", $e->get_accomplishments());
+    return $tt;
+}
 /*
     called by get_skill() when it constructs the skill tooltip
 */
