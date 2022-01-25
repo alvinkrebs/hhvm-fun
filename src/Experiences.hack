@@ -64,10 +64,16 @@ function Experiences(): (vec<Experience>, vec<Skill>) {
             "arm go server/circuit supporting fast LAN service of video",
         ]),
 
-        new Experience(20180301,        0, "Viziapps", "Principle Engineer", "viziapps.png", vec<string> [
+        new Experience(20180301, 20210104, "Viziapps", "Principle Engineer", "viziapps.png", vec<string> [
             "ASPX application",
             "Cordova plugin developer",
             "AWS Administration: S3, EC2, Elastic Beanstalk, RDS"
+        ]),
+
+        new Experience(20200501,        0, "Realtime Innovation", "Build/Release Engineer", "rti_logo.jpeg", vec<string> [
+            "Jenkins Automation",
+            "Groovy scripting",
+            "Sales Force Automation User"
         ])
     ];
 
@@ -118,7 +124,7 @@ function Experiences(): (vec<Experience>, vec<Skill>) {
         new Skill("perl", 1990, 90, "perl.jpg", vec<string>[
             "Discovered perl when awk could not handle very large input",
             "My go to tool to handle any kind of data culling",
-            "extension",
+            "Created several extension.",
         ]),
         new Skill("lua", 2008, 50, "lua.jpg", vec<string>[
             "extended LUA to support motion tracking",

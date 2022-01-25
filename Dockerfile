@@ -1,10 +1,10 @@
 FROM hhvm/hhvm-proxygen:latest
 RUN rm -rf /var/www
 ADD . /var/www
-RUN useradd -ms /bin/bash www
+#RUN useradd -ms /bin/bash www
 WORKDIR /var/www
-RUN chown -R www /var/www
-USER www
+#RUN chown -R www /var/www
+#USER www
 ADD hh_autoload.json /var/www
 RUN curl https://raw.githubusercontent.com/hhvm/hhast/master/.hhconfig > .hhconfig
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"

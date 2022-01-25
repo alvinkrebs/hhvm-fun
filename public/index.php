@@ -92,9 +92,8 @@ _crd_tab;
 
     $head_tab = <<<_head_tab
         <head>
-            <link rel="stylesheet" href="src/form-fun.css" />
+            <link rel="stylesheet" href="form-fun.css" />
             <link rel="stylesheet" href="third-party/tooltip/themes/1/tooltip.css" />
-            <script src="third-party/tooltip/themes/1/tooltip.js"></script>
         </head>
 _head_tab;
 
