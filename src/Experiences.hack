@@ -224,13 +224,7 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
         new Education(19920901, 19980601, "Santa Clara University", "Engineering", "scu.png", vec<string> [ "Masters of Science" ]),
     ];
 
-    $ordered_skill = sort_vec_skill($skill);
-
-    $ordered_exp = sort_vec_exp($exp);
-
-    $ordered_edu = sort_vec_edu($edu);
-
-    return tuple($ordered_exp, $ordered_skill, $ordered_edu);
+    return tuple(sort_vec_exp($exp), sort_vec_skill($skill), sort_vec_edu($edu));
 
 }
 function sort_vec_skill(vec<Skill> $vec): vec<Skill> {

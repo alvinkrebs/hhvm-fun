@@ -7,7 +7,25 @@ type AnAddress = shape(
     "Phone"  => string
 );
 
-type Cv = shape("Experience" => Vector<Experience>, "Skill" => Vector<Skill>);
+function nice_date(int $d, string $fmt = "Y-m-d"): string {
+
+    if (0 == $d) {
+        return date($fmt);
+    }
+
+    $year   = (int)($d / 10000);
+    $day    = (int)($d % 100);
+    $month  = $d - (10000 * $year);
+    $month /= 100;
+
+    // note: don't lead namespace'd with \\
+    //
+    if ("Y-m-d" == $fmt) {
+        return Str\format("%d-%02d-%02d", $year, (int)$month, $day);
+    } else {
+        return Str\format("%d/%02d", $year, (int)$month);
+    }
+}
 
 class StreetAddress {
 
@@ -53,22 +71,6 @@ class StreetAddress {
             "Street" => $this->street(),
             "Phone"  => $this->phone
         );
-    }
-}
-class DatedThing {
-    private int $a_date;
-    public function __construct(int $a_date) {
-        $this->a_date = $a_date;
-    }
-    public function nice_date(): string {
-        if (0 == $this->a_date) {
-            return date("Y-m-d");
-        }
-        $year   = (int)($this->a_date / 10000);
-        $day    = (int)($this->a_date % 100);
-        $month  = $this->a_date - (10000 * $year);
-        $month /= 100;
-        return Str\format("%d-%02d-%02d", $year, (int)$month, $day);
     }
 }
 class Skill {
@@ -141,40 +143,17 @@ class Experience {
     public function key(): string {
         return (string)$this->start;
     }
-    private function exp_date(int $d): string {
-        if (0 == $d) {
-            return date("Y/m");
-        }
-        $year   = (int)($d / 10000);
-        $month  = $d - (10000 * $year);
-        $month /= 100;
-        return Str\format("%d/%02d", $year, (int)$month);
-    }
-    private function nice_date(int $d): string {
-        if (0 == $d) {
-            return date("Y-m-d");
-        }
-
-        $year   = (int)($d / 10000);
-        $day    = (int)($d % 100);
-        $month  = $d - (10000 * $year);
-        $month /= 100;
-
-        // note: don't lead namespace'd with \\
-        //
-        return Str\format("%d-%02d-%02d", $year, (int)$month, $day);
-    }
     public function nice_start_date(): string {
-        return $this->nice_date($this->start);
+        return nice_date($this->start);
     }
     public function nice_stop_date(): string {
-        return $this->nice_date($this->stop);
+        return nice_date($this->stop);
     }
     public function get_daterange(): string {
         return $this->nice_start_date() . " to " . $this->nice_stop_date();
     }
     public function get_exprange(): string {
-        return $this->exp_date($this->start) . " to " . $this->exp_date($this->stop);
+        return nice_date($this->start, "Y/m") . " to " . nice_date($this->stop, "Y/m");
     }
     public function get_badge(): string { return $this->badge; }
     public function get_title(): string { return $this->title; }
@@ -216,25 +195,11 @@ class Education {
         $month /= 100;
         return Str\format("%d/%02d", $year, (int)$month);
     }
-    private function nice_date(int $d): string {
-        if (0 == $d) {
-            return date("Y-m-d");
-        }
-
-        $year   = (int)($d / 10000);
-        $day    = (int)($d % 100);
-        $month  = $d - (10000 * $year);
-        $month /= 100;
-
-        // note: don't lead namespace'd with \\
-        //
-        return Str\format("%d-%02d-%02d", $year, (int)$month, $day);
-    }
     public function nice_start_date(): string {
-        return $this->nice_date($this->start);
+        return nice_date($this->start);
     }
     public function nice_stop_date(): string {
-        return $this->nice_date($this->stop);
+        return nice_date($this->stop);
     }
     public function get_daterange(): string {
         return $this->nice_start_date() . " to " . $this->nice_stop_date();
