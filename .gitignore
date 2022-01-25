@@ -1,7 +1,3 @@
-.hhconfig
-composer.json
-composer.lock
-www.pid
 *.swp
 *.swo
 .DS_Store
