@@ -9,18 +9,19 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
             "Sybase Sql Server report writer",
             "NetISAM programmer",
             "SQR writer",
+            "Customer Return for Credit, sqr app",
         ]),
 
         new Experience(19950101, 19950831, "Network General (acquired by McAfee)", "Member of Technical Staff", "ng.jpg", vec<string> [
             "Sybase DBA",
             "Sybase Replication Server",
-            "Paging System",
+            "Expect PAC-Bell Paging System",
         ]),
 
         new Experience(19950901, 19980931, "Baystone Software (acquired by Remedy)", "Principle Engineer", "remedy.jpg", vec<string> [
-            "Cora Biz Rules Generator",
+            "CORA Biz Rules Generator",
             "CRUD windows binaries using remedy API",
-            "Data migration",
+            "Data migration using perl",
         ]),
 
         new Experience(19980901, 20041031, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
@@ -32,7 +33,7 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
         ]),
 
         new Experience(20010101, 20060731, "Avvenu (acquired by Nokia)", "Member of Technical Staff", "nokia.jpg", vec<string> [
-            "Streaming A/V proxy service",
+            "Streaming A/V proxy service over WAP",
             "NTLMv2 Biz Proxy service",
             "Adobe Elements plugin",
         ]),
@@ -55,18 +56,19 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
             "Jenkins to Atlassian Bamboo migration",
         ]),
 
-        new Experience(20150901, 20181131, "LARC", "Architect", "larc.png", vec<string> [
-            "Go server for mesh network",
+        new Experience(20150901, 20181131, "Los Altos Research Center", "Architect", "larc.png", vec<string> [
+            "GO(lang) server for mesh network",
             "Patent #15/208,509 for mesh network awarded",
             "BLE/Accelerometer motion control for proprietary AV system, tinyduino hardware",
             "Network Administration",
             "iOS/tvOS media services utilizing dead drop network",
             "arm go server/circuit supporting fast LAN service of video",
+            "Arduino, TinyDuino, RF, BLE, accelerometer to support remote tuner control using physical gestures",
         ]),
 
         new Experience(20180301, 20210104, "Viziapps", "Principle Engineer", "viziapps.png", vec<string> [
             "ASPX application",
-            "Cordova plugin developer",
+            "Cordova plugin developer, (ios, android)",
             "AWS Administration: S3, EC2, Elastic Beanstalk, RDS"
         ]),
 
@@ -75,6 +77,7 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
             "Perl and Groovy scripting",
             "Sales Force Automation User",
             "Migration of build system from Bamboo to jenkins",
+            "Atlassian Bamboo to Jenkins migration",
         ])
     ];
 

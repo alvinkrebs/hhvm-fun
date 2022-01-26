@@ -20,11 +20,8 @@ function nice_date(int $d, string $fmt = "Y-m-d"): string {
 
     // note: don't lead namespace'd with \\
     //
-    if ("Y-m-d" == $fmt) {
-        return Str\format("%d-%02d-%02d", $year, (int)$month, $day);
-    } else {
-        return Str\format("%d/%02d", $year, (int)$month);
-    }
+    return "Y-m-d" == $fmt ?
+        Str\format("%d-%02d-%02d", $year, (int)$month, $day) : Str\format("%d/%02d", $year, (int)$month);
 }
 
 class StreetAddress {
