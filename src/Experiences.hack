@@ -76,7 +76,6 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
             "Jenkins Automation",
             "Perl and Groovy scripting",
             "Sales Force Automation User",
-            "Migration of build system from Bamboo to jenkins",
             "Atlassian Bamboo to Jenkins migration",
         ])
     ];
