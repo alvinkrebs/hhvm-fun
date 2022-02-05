@@ -2,6 +2,10 @@
 
 use type Facebook\XHP\HTML\{h2, script, link, head, table, tr, td};
 
+const int EMPLOYMENT = 0;
+const int SKILL = 1;
+const int EDUCATION = 2;
+
 <<__EntryPoint>>
 async function main_resume(): Awaitable<void> {
 
@@ -15,13 +19,13 @@ async function main_resume(): Awaitable<void> {
     // table of links with tooltips
     //
     $skill_tab = <table class="tt_table"/>;
-    for ($i = 0; $i < count($expSkill[1]); $i += 4) {
-        switch (count($expSkill[1]) - $i) {
+    for ($i = 0; $i < count($expSkill[SKILL]); $i += 4) {
+        switch (count($expSkill[SKILL]) - $i) {
 
         case 1:
             $skill_tab->appendChild(
                 <tr class="tt_row">
-                    <td>{get_skill($expSkill[1][$i  ]->get())}</td>
+                    <td>{get_skill($expSkill[SKILL][$i  ]->get())}</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -32,8 +36,8 @@ async function main_resume(): Awaitable<void> {
         case 2:
             $skill_tab->appendChild(
                 <tr class="tt_row">
-                    <td>{get_skill($expSkill[1][$i  ]->get())}</td>
-                    <td>{get_skill($expSkill[1][$i+1]->get())}</td>
+                    <td>{get_skill($expSkill[SKILL][$i  ]->get())}</td>
+                    <td>{get_skill($expSkill[SKILL][$i+1]->get())}</td>
                     <td></td>
                     <td></td>
                </tr>
@@ -43,9 +47,9 @@ async function main_resume(): Awaitable<void> {
         case 3:
             $skill_tab->appendChild(
                 <tr class="tt_row">
-                    <td>{get_skill($expSkill[1][$i  ]->get())}</td>
-                    <td>{get_skill($expSkill[1][$i+1]->get())}</td>
-                    <td>{get_skill($expSkill[1][$i+2]->get(), true)}</td>
+                    <td>{get_skill($expSkill[SKILL][$i  ]->get())}</td>
+                    <td>{get_skill($expSkill[SKILL][$i+1]->get())}</td>
+                    <td>{get_skill($expSkill[SKILL][$i+2]->get(), true)}</td>
                     <td></td>
                </tr>
             );
@@ -54,31 +58,31 @@ async function main_resume(): Awaitable<void> {
         default:
             $skill_tab->appendChild(
                 <tr class="tt_row">
-                    <td>{get_skill($expSkill[1][$i  ]->get())}</td>
-                    <td>{get_skill($expSkill[1][$i+1]->get())}</td>
-                    <td>{get_skill($expSkill[1][$i+2]->get(), true)}</td>
-                    <td>{get_skill($expSkill[1][$i+3]->get(), true)}</td>
+                    <td>{get_skill($expSkill[SKILL][$i  ]->get())}</td>
+                    <td>{get_skill($expSkill[SKILL][$i+1]->get())}</td>
+                    <td>{get_skill($expSkill[SKILL][$i+2]->get(), true)}</td>
+                    <td>{get_skill($expSkill[SKILL][$i+3]->get(), true)}</td>
                </tr>
             );
         }
     }
 
     $exp_tab = <table id="ex_table" class="ex_table"/>;
-    for ($i = 0; $i < count($expSkill[0]); $i++) {
+    for ($i = 0; $i < count($expSkill[EMPLOYMENT]); $i++) {
         $exp_tab->appendChild(
             <tr class="tt_row">
-                <td>{get_experience($expSkill[0][$i]->get())}</td>
-                <td class="tab_line">{$expSkill[0][$i]->get_exprange()}</td>
+                <td>{get_experience($expSkill[EMPLOYMENT][$i]->get())}</td>
+                <td class="tab_line">{$expSkill[EMPLOYMENT][$i]->get_exprange()}</td>
             </tr>
        );
     }
 
     $edu_tab = <table id="ex_table" class="ex_table"/>;
-    for ($i = 0; $i < count($expSkill[2]); $i++) {
+    for ($i = 0; $i < count($expSkill[EDUCATION]); $i++) {
         $edu_tab->appendChild(
             <tr class="tt_row">
-                <td>{get_education($expSkill[2][$i]->get())}</td>
-                <td class="tab_line">{$expSkill[2][$i]->get_edurange()}</td>
+                <td>{get_education($expSkill[EDUCATION][$i]->get())}</td>
+                <td class="tab_line">{$expSkill[EDUCATION][$i]->get_edurange()}</td>
             </tr>
        );
     }

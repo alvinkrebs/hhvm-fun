@@ -86,8 +86,11 @@ class Skill {
     public function get(): Skill {
         return $this;
     }
+    public function iKey(): int {
+        return $this->comfort_level;
+    }
     public function key(): string {
-        return $this->start . $this->skill;
+        return Str\format("%d-%s", $this->comfort_level, $this->skill);
     }
     public function get_badge(): string {
         return $this->badge;

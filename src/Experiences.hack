@@ -234,7 +234,7 @@ function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
     foreach ($vec as $k => $v) {
         $d[$v->key()] = $v->get();
     }
-    $ordered = Dict\sort($d);
+    $ordered = Dict\sort($d, function($a, $b): num { return (-1 * ($a->iKey() - $b->iKey())) + Str\compare($a->get_skill(), $b->get_skill()); } );
     $sorted_vec = vec[];
     foreach ($ordered as $k => $v) {
         $sorted_vec[] = $v->get();
