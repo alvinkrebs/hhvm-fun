@@ -185,7 +185,7 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
         new Skill("tcl/tk, incr tcl", 1999, 80, "tcl.png", vec<string> [
             "TiVo's first CDN, written in tcl for both client (the tivo box) and the service",
         ]),
-        new Skill("sql", 1990, 70, "sql.png", vec<string> [
+        new Skill("sql", 1990, 70, "sql.jpeg", vec<string> [
             "Many years of sql experience",
             "Stored procedure and Triggers",
             "create SQR reports for SUNW sales",
@@ -239,7 +239,7 @@ function sort_vec_skill(vec<Skill> $vec): vec<Skill> {
     foreach ($vec as $k => $v) {
         $d[$v->key()] = $v->get();
     }
-    $ordered = Dict\sort($d, function($a, $b): num { return (-1 * ($a->iKey() - $b->iKey())) + Str\compare($a->get_skill(), $b->get_skill()); } );
+    $ordered = Dict\sort($d, function($a, $b): num { return (-1 * ($a->iKey() - $b->iKey())) + Str\compare_ci($a->get_skill(), $b->get_skill()); } );
     $sorted_vec = vec[];
     foreach ($ordered as $k => $v) {
         $sorted_vec[] = $v->get();

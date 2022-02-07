@@ -102,12 +102,11 @@ class Skill {
         return $this->skill . " (since " . $this->start . ")";
     }
     public function tool_tip(): string {
-
         if ($this->comfort_level >= 90) {
             return "Expert";
         }
         if ($this->comfort_level >= 80) {
-            return "Adept";
+            return "Proficient";
         }
         if ($this->comfort_level >= 70) {
             return "Comfortable";
