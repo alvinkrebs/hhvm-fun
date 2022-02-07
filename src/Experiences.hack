@@ -13,12 +13,14 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
         ]),
 
         new Experience(19950101, 19950831, "Network General (acquired by McAfee)", "Member of Technical Staff", "ng.jpg", vec<string> [
+            "Acquired by McAffe",
             "Sybase DBA",
             "Sybase Replication Server",
             "Expect PAC-Bell Paging System",
         ]),
 
         new Experience(19950901, 19980931, "Baystone Software (acquired by Remedy)", "Principle Engineer", "remedy.jpg", vec<string> [
+            "Acquired by Remedy",
             "CORA Biz Rules Generator",
             "CRUD windows binaries using remedy API",
             "Data migration using perl",
@@ -33,12 +35,14 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
         ]),
 
         new Experience(20010101, 20060731, "Avvenu (acquired by Nokia)", "Member of Technical Staff", "nokia.jpg", vec<string> [
+            "Acquired by Nokia",
             "Streaming A/V proxy service over WAP",
             "NTLMv2 Biz Proxy service",
             "Adobe Elements plugin",
         ]),
 
         new Experience(20060801, 20100231, "Mobilygen (acquired by Maxim)", "Member of Technical Staff", "mobi.jpg", vec<string> [
+            "Acquired by Maxim",
             "Storage Driver for CF/IDE",
             "Lua extensions for motion tracking",
             "USB Driver",
