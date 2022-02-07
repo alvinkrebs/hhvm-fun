@@ -9,7 +9,7 @@ const int EDUCATION = 2;
 <<__EntryPoint>>
 async function main_resume(): Awaitable<void> {
 
-    require_once(__DIR__.'/../vendor/autoload.hack');
+    require_once(__DIR__.'/vendor/autoload.hack');
 
     \Facebook\AutoloadMap\initialize();
     
