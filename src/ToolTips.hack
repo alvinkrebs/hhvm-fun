@@ -1,11 +1,8 @@
 use namespace HH\Lib\Dict;
+use namespace HH\Lib\Str;
 use namespace Facebook\XHP\Core as x;
 use type Facebook\XHP\HTML\{script, table, tr, td, img, ul, div, h3, p, li, i};
 
-/*
-    called by get_experience() when it constructs the experience tooltip
-    TIL: how to call hack inside {}, see the img src tag.
-*/
 final xhp class experience_tooltip extends x\element {
     attribute string title @required;
     attribute string company @required;
@@ -15,7 +12,11 @@ final xhp class experience_tooltip extends x\element {
     protected async function renderAsync(): Awaitable<x\node> {
         $ul = <ul />;
         foreach ($this->:highlights as $h) {
-            $ul->appendChild(<li>{$h}</li>);
+            if (Str\contains_ci($h, "Acquired")) {
+                $ul->appendChild(<li style="font-weight:bold;">{$h}</li>);
+            } else {
+                $ul->appendChild(<li>{$h}</li>);
+            }
         }
         return
             <div class="tooltip"><div class="tab_line">{$this->:company}</div>
