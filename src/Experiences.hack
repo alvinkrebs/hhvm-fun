@@ -13,7 +13,7 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
         ]),
 
         new Experience(19950101, 19950831, "Network General (acquired by McAfee)", "Member of Technical Staff", "ng.jpg", vec<string> [
-            "Acquired by McAffe",
+            "Acquired by McAfee",
             "Sybase DBA",
             "Sybase Replication Server",
             "Expect PAC-Bell Paging System",
