@@ -19,6 +19,9 @@ EXPOSE 80
 ##      docker build .
 ##      --> bunch of messages, look for writing image sha256:c7b62a659fd5888d1ffb119db27a79149a9c1e74791def0098a7c9fcd0e8bcdc
 ##      docker run -p 0.0.0.0:80:80 c7b62a659fd5888d1ffb119db27a79149a9c1e74791def0098a7c9fcd0e8bcdc
+## or just name/tag image
+##      docker build . -t stand-up && docker run -p 0.0.0.0:80:80 stand-up
+##
 ##
 ## Served out of /var/www/public, so, static css, images, js should live in /var/www/public and /var/public/images/
 ##
