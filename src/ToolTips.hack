@@ -1,14 +1,26 @@
 use namespace HH\Lib\Dict;
 use namespace HH\Lib\Str;
 use namespace Facebook\XHP\Core as x;
-use type Facebook\XHP\HTML\{script, table, tr, td, img, ul, div, h3, p, li, i};
+use type Facebook\XHP\HTML\{script, table, tr, td, img, ul, div, h3, p, li, i, a};
 
 final xhp class experience_tooltip extends x\element {
     attribute string title @required;
     attribute string company @required;
+    attribute string web @required;
     attribute string badge @required;
     attribute string daterange  @required;
     attribute vec<string> highlights @required;
+    private function getCompany(): string {
+        return $this->:company;
+    }
+    private function getImage(): string {
+        return "images/" . $this->:badge;
+    }
+    // I'd like to open this page in a new tab
+    //
+    private function getHref(): string {
+        return "https://" . $this->:web;
+    }
     protected async function renderAsync(): Awaitable<x\node> {
         $ul = <ul />;
         foreach ($this->:highlights as $h) {
@@ -19,9 +31,11 @@ final xhp class experience_tooltip extends x\element {
             }
         }
         return
-            <div class="tooltip"><div class="tab_line">{$this->:company}</div>
+            <div class="tooltip"><div class="tab_line">{$this->getCompany()}</div>
                 <div class="left">
-                    <img src={"images/" . $this->:badge} />
+                    <a href={$this->getHref()}>
+                        <img src={$this->getImage()} />
+                    </a>
                     <h3>{$this->:title}</h3>
                     <p>{$this->:daterange}</p>
                     {$ul}
@@ -35,6 +49,7 @@ function get_experience(Experience $e): x\element {
     $tt = <experience_tooltip />;
     $tt->setAttribute("title", $e->get_title());
     $tt->setAttribute("company", $e->get_company());
+    $tt->setAttribute("web", $e->get_web());
     $tt->setAttribute("badge", $e->get_badge());
     $tt->setAttribute("daterange", $e->get_daterange());
     $tt->setAttribute("highlights", $e->get_accomplishments());

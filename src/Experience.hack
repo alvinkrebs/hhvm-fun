@@ -124,14 +124,16 @@ class Experience {
     private int $start;
     private int $stop;
     private string $company;
+    private string $web;
     private string $title;
     private string $badge;
     private vec<string> $accomplishments;
 
-    public function __construct(int $start, int $stop, string $company, string $title, string $badge, vec<string> $accomplishments) {
+    public function __construct(int $start, int $stop, string $company, string $web, string $title, string $badge, vec<string> $accomplishments) {
         $this->start    = $start;
         $this->stop     = $stop;
         $this->company  = $company;
+        $this->web      = $web;
         $this->title    = $title ;
         $this->badge    = $badge ;
         $this->accomplishments = $accomplishments;
@@ -157,6 +159,7 @@ class Experience {
     public function get_badge(): string { return $this->badge; }
     public function get_title(): string { return $this->title; }
     public function get_company(): string { return $this->company; }
+    public function get_web(): string { return $this->web; }
     public function get_accomplishments(): vec<string> { return $this->accomplishments; }
 
     public function get(): Experience {

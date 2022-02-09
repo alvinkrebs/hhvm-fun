@@ -5,28 +5,28 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
 
     $exp = vec<Experience> [
 
-        new Experience(19900101, 19941231, "Sun Microsystems", "Member of Technical Staff", "sun.png", vec<string> [
+        new Experience(19900101, 19941231, "Sun Microsystems", "www.sun.com", "Member of Technical Staff", "sun.png", vec<string> [
             "Sybase Sql Server report writer",
             "NetISAM programmer",
             "SQR writer",
             "Customer Return for Credit, sqr app",
         ]),
 
-        new Experience(19950101, 19950831, "Network General (acquired by McAfee)", "Member of Technical Staff", "ng.jpg", vec<string> [
+        new Experience(19950101, 19950831, "Network General (acquired by McAfee)", "www.mcafee.com", "Member of Technical Staff", "ng.jpg", vec<string> [
             "Acquired by McAfee",
             "Sybase DBA",
             "Sybase Replication Server",
             "Expect PAC-Bell Paging System",
         ]),
 
-        new Experience(19950901, 19980931, "Baystone Software (acquired by Remedy)", "Principle Engineer", "remedy.jpg", vec<string> [
+        new Experience(19950901, 19980931, "Baystone Software (acquired by Remedy)", "www.remedy.com", "Principle Engineer", "remedy.jpg", vec<string> [
             "Acquired by Remedy",
             "CORA Biz Rules Generator",
             "CRUD windows binaries using remedy API",
             "Data migration using perl",
         ]),
 
-        new Experience(19980901, 20041031, "TiVo", "Member of Technical Staff", "tivo.png", vec<string> [
+        new Experience(19980901, 20041031, "TiVo", "www.tivo.com", "Member of Technical Staff", "tivo.png", vec<string> [
             "EISA vbi caption reader, (linux device driver)",
             "IR Database parser and distribution tools", 
             "Tribune Media Service Content Distribution Service",
@@ -34,33 +34,33 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
             "TiVo Tags caption insertion for NBC/Disney",
         ]),
 
-        new Experience(20010101, 20060731, "Avvenu (acquired by Nokia)", "Member of Technical Staff", "nokia.jpg", vec<string> [
+        new Experience(20010101, 20060731, "Avvenu (acquired by Nokia)", "www.nokia.com", "Member of Technical Staff", "nokia.jpg", vec<string> [
             "Acquired by Nokia",
             "Streaming A/V proxy service over WAP",
             "NTLMv2 Biz Proxy service",
             "Adobe Elements plugin",
         ]),
 
-        new Experience(20060801, 20100231, "Mobilygen (acquired by Maxim)", "Member of Technical Staff", "mobi.jpg", vec<string> [
+        new Experience(20060801, 20100231, "Mobilygen (acquired by Maxim)", "www.maximintegrated.com", "Member of Technical Staff", "mobi.jpg", vec<string> [
             "Acquired by Maxim",
             "Storage Driver for CF/IDE",
             "Lua extensions for motion tracking",
             "USB Driver",
         ]),
 
-        new Experience(20100101, 20100231, "Blueberry Video", "Founder", "blue.jpg", vec<string> [
+        new Experience(20100101, 20100231, "Blueberry Video", "www.google.com", "Founder", "blue.jpg", vec<string> [
             "Board bring up",
             "Investor presentations",
             "AV device driver rewrite in support of 16 cores"
         ]),
 
-        new Experience(20100901, 20150831, "Dell", "Senior Manager", "dell.png", vec<string> [
+        new Experience(20100901, 20150831, "Dell", "www.dell.com", "Senior Manager", "dell.png", vec<string> [
             "Custom Inventory Rules Parser on four platforms, win, osx, linux, sparc",
             "Managed the K2000 team delivering multicast and L10N",
             "Jenkins to Atlassian Bamboo migration",
         ]),
 
-        new Experience(20150901, 20181131, "Los Altos Research Center", "Architect", "larc.png", vec<string> [
+        new Experience(20150901, 20181131, "Los Altos Research Center", "www.larc.com", "Architect", "larc.png", vec<string> [
             "GO(lang) server for mesh network",
             "Patent #15/208,509 for mesh network awarded",
             "BLE/Accelerometer motion control for proprietary AV system, tinyduino hardware",
@@ -70,13 +70,13 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
             "Arduino, TinyDuino, RF, BLE, accelerometer to support remote tuner control using physical gestures",
         ]),
 
-        new Experience(20180301, 20210104, "Viziapps", "Principle Engineer", "viziapps.png", vec<string> [
+        new Experience(20180301, 20210104, "Viziapps", "www.viziapps.com", "Principle Engineer", "viziapps.png", vec<string> [
             "ASPX application",
             "Cordova plugin developer, (ios, android)",
             "AWS Administration: S3, EC2, Elastic Beanstalk, RDS"
         ]),
 
-        new Experience(20200501, 0, "Realtime Innovation", "Build/Release Engineer", "rti_logo.jpeg", vec<string> [
+        new Experience(20200501, 0, "Realtime Innovation", "www.rti.com", "Build/Release Engineer", "rti_logo.jpeg", vec<string> [
             "Jenkins Automation",
             "Perl and Groovy scripting",
             "Sales Force Automation User",
