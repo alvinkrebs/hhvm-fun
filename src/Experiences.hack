@@ -69,13 +69,16 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
             "arm go server/circuit supporting fast LAN service of video",
             "Arduino, TinyDuino, RF, BLE, accelerometer to support remote tuner control using physical gestures",
         ]),
-
         new Experience(20180301, 20210104, "Viziapps", "www.viziapps.com", "Principle Engineer", "viziapps.png", vec<string> [
             "ASPX application",
             "Cordova plugin developer, (ios, android)",
             "AWS Administration: S3, EC2, Elastic Beanstalk, RDS"
         ]),
-
+        new Experience(20190301, 20191231, "Cellpoint Systems", "www.cellpointsystems.com", "Contract S/W Eng", "cellpoint.jpeg", vec<string> [
+            "GO(lang) Omron Thermal Proximity Sensor and tracking for Google Retail",
+            "RADAR Proximity Sensor prototype",
+            "Various Unix Standalone System Fixes",
+        ]),
         new Experience(20200501, 0, "Realtime Innovation", "www.rti.com", "Build/Release Engineer", "rti_logo.jpeg", vec<string> [
             "Jenkins Automation",
             "Perl and Groovy scripting",

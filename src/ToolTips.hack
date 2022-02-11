@@ -34,7 +34,7 @@ final xhp class experience_tooltip extends x\element {
             <div class="tooltip"><div class="tab_line">{$this->getCompany()}</div>
                 <div class="left">
                     <a href={$this->getHref()}>
-                        <img src={$this->getImage()} />
+                        <img src={$this->getImage()} alt={$this->:web} />
                     </a>
                     <h3>{$this->:title}</h3>
                     <p>{$this->:daterange}</p>
