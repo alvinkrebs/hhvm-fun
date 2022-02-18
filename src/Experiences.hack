@@ -69,7 +69,7 @@ function Experiences(): (vec<Experience>, vec<Skill>, vec<Education>) {
             "arm go server/circuit supporting fast LAN service of video",
             "Arduino, TinyDuino, RF, BLE, accelerometer to support remote tuner control using physical gestures",
         ]),
-        new Experience(20180301, 20210104, "Viziapps", "www.viziapps.com", "Principle Engineer", "viziapps.png", vec<string> [
+        new Experience(20180301, 20210104, "Viziapps", "viziapps.com", "Principle Engineer", "viziapps.png", vec<string> [
             "ASPX application",
             "Cordova plugin developer, (ios, android)",
             "AWS Administration: S3, EC2, Elastic Beanstalk, RDS"
