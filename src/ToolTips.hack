@@ -19,6 +19,9 @@ final xhp class experience_tooltip extends x\element {
     // I'd like to open this page in a new tab
     //
     private function getHref(): string {
+        if (Str\contains_ci($this->:web, "viziapps")) {
+            return "http://" . $this->:web;
+        }
         return "https://" . $this->:web;
     }
     protected async function renderAsync(): Awaitable<x\node> {
